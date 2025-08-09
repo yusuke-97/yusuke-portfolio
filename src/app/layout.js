@@ -2,6 +2,7 @@ import { Geist, Geist_Mono, Montserrat } from "next/font/google";
 import "./globals.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import Loader from "./components/Loader";
 
 const montserrat = Montserrat({ subsets: ['latin'] });
 
@@ -28,6 +29,7 @@ export default function RootLayout({ children }) {
         <link rel="stylesheet" href="/css/style.css" />
       </head>
       <body className={montserrat.className}>
+        <Loader />
         <Header />
         {children}
         <Footer />
