@@ -30,7 +30,7 @@ body {
    レイアウト
   ---------------------------------*/
   main {
-    padding-top: 66px;
+    /* padding-top: 66px; */
   }
   
   .section {
@@ -106,7 +106,7 @@ body {
   }
   
   .header-logo a {
-    color: #fff;
+    color: #F1F5F9;
   }
   
   .header .gnav-list {
@@ -127,7 +127,7 @@ body {
     padding: 5px 0;
     transition: .3s;
     letter-spacing: .05em;
-    color: #fff;
+    color: #F1F5F9;
   }
   
   .header .gnav-item a:after {
@@ -140,7 +140,7 @@ body {
     transition: .3s;
     -webkit-transform: translateX(-50%);
     transform: translateX(-50%);
-    background-color: #fff;
+    background-color: #F1F5F9;
   }
   
   .header .gnav-item a:hover:after {
@@ -160,75 +160,181 @@ body {
   /*--------------------------------
    メインビジュアル
   ---------------------------------*/
-  /* MV全体 */
   .mv {
     display: flex;
     align-items: center;
     justify-content: center;
     height: auto;
     text-align: center;
-    background-color: #001B47;
+    background-color: #212121;
     position: relative;
     overflow: hidden;
     z-index: 1;
   }
-  
-  /* コンテナ */
-  .mv-container {
-    max-width: 1140px;
+
+  .mv,
+  .mv .mv-container {
+    height: 100vh;
+    background-color: #212121;
+  }
+
+  .mv .mv-container {
     width: 100%;
     height: 100%;
     position: relative;
     z-index: 2;
   }
-  
-  /* 背景画像 */
-  .mv-container-img {
+
+  .mv .mv-container .mv-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+  }
+
+  .mv .mv-container .mv-bg .mv-container-video {
+    position: absolute;
+    inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    opacity: 0.3;
+    opacity: 0;
+    transition: opacity 0.9s ease-out;
+  }
+  .mv .mv-container .mv-bg .mv-container-video.is-visible {
+    opacity: 1;
+  }
+
+  .mv .mv-container .mv-title {
+    position: absolute;
+    inset: 0;
+    z-index: 5;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+  }
+
+  .mv .mv-container .mv-title .mv-letters {
+    display: inline-flex;
+    gap: 0;
+    font-family: 'Montserrat', system-ui, -apple-system, sans-serif;
+    font-weight: 600;
+    font-size: min(80px, 6.25vw);
+    line-height: 1;
+    color: #F1F5F9;
+    letter-spacing: 0.04em;
   }
   
-  /* テキスト部分 */
-  .mv-text {
+  .mv .mv-container .mv-title .mv-letters .mv-letter {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(60px);
+    transition:
+      transform 0.6s cubic-bezier(.2,.65,.2,1),
+      opacity   0.6s cubic-bezier(.2,.65,.2,1);
+    will-change: transform, opacity;
+  }
+  
+  .mv .mv-container .mv-title .mv-letters.is-on .mv-letter {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .mv .mv-container .mv-title .sr-only {
+    position: absolute !important;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0, 0, 0, 0);
+    white-space: nowrap; border: 0;
+  }
+  
+  @media (prefers-reduced-motion: reduce) {
+  .mv .mv-container .mv-title .mv-letters .mv-letter {
+      transition: none !important;
+      opacity: 1 !important;
+      transform: none !important;
+    }
+  }
+
+  .mv .mv-container .mv-text {
     position: absolute;
-    top: 40%;
-    left: 35%;
-    transform: translate(-50%, -50%);
-    text-align: left;
-    color: #fff;
+    top: 58%;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #F1F5F9;
     z-index: 3;
   }
-  
-  .mv-text h1 {
-    font-size: 5vw;
-    font-weight: 600;
-    letter-spacing: 0.1rem;
-    line-height: 1.3;
-  }
-  
-  .mv-text p {
-    font-size: 18px;
-    margin-top: 10px;
+
+  .mv .mv-container .mv-text .mv-sub {
+    color: #F1F5F9;
+    font-size: min(28px, 2.2vw);
     line-height: 1.6;
     letter-spacing: 0.1rem;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
   }
-  
-  /* 歯車GIF */
-  .mv-gears {
+
+  .mv .mv-container .mv-text .mv-sub.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .mv .mv-container .mv-scroll {
     position: absolute;
-    bottom: 30%;
-    right: 10%;
-    height: auto;
-    z-index: 3;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: max(24px, calc(16px + env(safe-area-inset-bottom)));
+    z-index: 4;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+
+    opacity: 0;
+    transform-origin: center;
+    transition: opacity 0.6s ease, transform 0.6s ease;
+    pointer-events: none;
+  }
+  .mv .mv-container .mv-scroll.is-visible {
+    opacity: 1;
+  }
+
+  .mv .mv-container .mv-scroll__label {
+    font-size: 16px;
+    text-transform: lowercase;
+    color: #F1F5F9;
+    user-select: none;
+  }
+
+  .mv .mv-container .mv-scroll__line {
+    --barH: 24px;
+    position: relative;
+    width: 1px;
+    height: 100px;
+    background: #64748B;
+    overflow: hidden;
   }
   
-  .mv-gears-img {
-    width: 20vw;
-    height: auto;
-    object-fit: contain;
-    opacity: initial;
+  .mv .mv-container .mv-scroll__line::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: calc(var(--barH) * -1);
+    width: 100%;
+    height: var(--barH);
+    background: #F1F5F9;
+    box-shadow: 0 0 10px rgba(241,245,249,0.55);
+    animation: mvScrollRun 1.8s cubic-bezier(.2,.65,.2,1) infinite;
+  }
+  
+  @keyframes mvScrollRun {
+    0%   { top: calc(var(--barH) * -1); opacity: 0; }
+    10%  { opacity: 1; }
+    90%  { opacity: 1; }
+    100% { top: 100%; opacity: 0; }
   }
   
   /*--------------------------------
@@ -541,7 +647,7 @@ body {
   .copyright {
     font-size: 10px;
     text-align: center;
-    color: #fff;
+    color: #F1F5F9;
     margin-top: 100px;
   }
   
@@ -566,7 +672,7 @@ body {
   }
   
   .footer-logo a {
-    color: #fff;
+    color: #F1F5F9;
   }
   
   .footer .gnav-list {
@@ -587,7 +693,7 @@ body {
     padding: 5px 0;
     transition: .3s;
     letter-spacing: .05em;
-    color: #fff;
+    color: #F1F5F9;
   }
   
   .footer .gnav-item a:after {
@@ -600,7 +706,7 @@ body {
     transition: .3s;
     -webkit-transform: translateX(-50%);
     transform: translateX(-50%);
-    background-color: #fff;
+    background-color: #F1F5F9;
   }
   
   .footer .gnav-item a:hover:after {
@@ -638,7 +744,7 @@ body {
   .article-body .view-site {
     background: linear-gradient(180deg, #0042AD 0%, #001B47 100%);
     border: none;
-    color: #fff;
+    color: #F1F5F9;
     font-size: 16px;
     padding: 12px 24px;
     margin-top: 32px;
@@ -716,7 +822,7 @@ body {
     min-width: 133px;
     display: inline-block;
     background: linear-gradient(90deg, #0042AD, #001B47);
-    color: #fff;
+    color: #F1F5F9;
     font-size: 16px;
     padding: 4px 16px;
     position: relative;
@@ -852,7 +958,7 @@ body {
     left: 0;
     top: 0;
     content: attr(data-text);
-    color: #fff;
+    color: #F1F5F9;
     background-color: #00ACC1;
     border-radius: 4px;
     transform-origin: 50% 0%;
@@ -884,7 +990,7 @@ body {
   
     /* レイアウト */
     main {
-      padding-top: 48px;
+      /* padding-top: 48px; */
     }
   
     .section {
@@ -922,10 +1028,7 @@ body {
     .mv-container {
       padding: 0 20px;
     }
-  
-    .mv-title {
-      font-size: 30px;
-    }
+
     .mv-subtitle {
       font-size: 16px;
       margin-bottom: 20px;
@@ -942,27 +1045,20 @@ body {
       width: 18vw;
     }
   
-  .mv-text h1 {
-    font-size: 5vw;
-    font-weight: 600;
-    letter-spacing: 0.1rem;
-    line-height: 1.3;
-  }
-  
-  .mv-text p {
-    font-size: 1.6vw;
-    margin-top: 10px;
-    line-height: 1.6;
-    letter-spacing: 0.1rem;
-  }
-  
-  .title-en {
-    font-size: 4.3vw;
-  }
-  
-  .title-jp {
-    font-size: 1.4vw;
-  }
+    .mv-text p {
+      font-size: 1.6vw;
+      margin-top: 10px;
+      line-height: 1.6;
+      letter-spacing: 0.1rem;
+    }
+    
+    .title-en {
+      font-size: 4.3vw;
+    }
+    
+    .title-jp {
+      font-size: 1.4vw;
+    }
   
     /* Works */
     .works-name {

@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import MV from "./components/MV";
 import SkillChart from "./components/SkillChart";
 import PageTopButton from "./components/PageTopButton";
 import useFadeInScroll from "./hooks/useFadeInScroll";
@@ -85,21 +86,7 @@ export default function Home() {
   return (
     <>
       <main className="content">
-        <div className="mv">
-          <div className="mv-container">
-            <Image src="/img/main.jpeg" alt="メイン画像" className="mv-container-img" width={100} height={100} />
-            <div className="mv-text">
-              <h1>
-                YUSUKE ISHIYAMA
-                <br />PORTFOLIO
-              </h1>
-              <p>技術を駆使して、想いをカタチに。</p>
-            </div>
-            <div className="mv-gears">
-              <Image src="/img/gears.gif" alt="歯車アニメーション" width={100} height={100} className="mv-gears-img" />
-            </div>
-          </div>
-        </div>
+        <MV />
 
         <section className="works section" id="works">
           <div className="cmn-container">
