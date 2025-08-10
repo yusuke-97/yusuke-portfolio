@@ -161,7 +161,7 @@ export default function Home() {
             <div className="skill-list fade-in">
               <div className="skill-item">
                 <p className="skill-img">
-                  <Image src="/img/skills/html.png" alt="html" width={60} height={60} />
+                  <Image src="/img/skills/html-icon.svg" alt="html" width={60} height={60} />
                 </p>
                 <div className="skill-body">
                   <h3 className="skill-name">HTML/CSS</h3>
@@ -170,7 +170,7 @@ export default function Home() {
               </div>
               <div className="skill-item">
                 <p className="skill-img">
-                  <Image src="/img/skills/js.png" alt="javascript" width={60} height={60} />
+                  <Image src="/img/skills/js-icon.svg" alt="javascript" width={60} height={60} />
                 </p>
                 <div className="skill-body">
                   <h3 className="skill-name">JavaScript</h3>
@@ -179,7 +179,7 @@ export default function Home() {
               </div>
               <div className="skill-item">
                 <p className="skill-img">
-                  <Image src="/img/skills/jquery.png" alt="jquery" width={60} height={60} />
+                  <Image src="/img/skills/jquery-icon.svg" alt="jquery" width={60} height={60} />
                 </p>
                 <div className="skill-body">
                   <h3 className="skill-name">jQuery</h3>
@@ -188,7 +188,7 @@ export default function Home() {
               </div>
               <div className="skill-item">
                 <p className="skill-img">
-                  <Image src="/img/skills/vue.png" alt="vue" width={60} height={60} />
+                  <Image src="/img/skills/vuejs-icon.svg" alt="vue" width={60} height={60} />
                 </p>
                 <div className="skill-body">
                   <h3 className="skill-name">Vue.js</h3>
@@ -197,7 +197,7 @@ export default function Home() {
               </div>
               <div className="skill-item">
                 <p className="skill-img" style={{ height: 60, display: "flex", alignItems: "center", justifyContent: "center" }}>
-                  <Image src="/img/skills/php.png" alt="php" width={60} height={60} />
+                  <Image src="/img/skills/php-icon.svg" alt="php" width={60} height={60} />
                 </p>
                 <div className="skill-body">
                   <h3 className="skill-name">PHP</h3>
@@ -206,7 +206,7 @@ export default function Home() {
               </div>
               <div className="skill-item">
                 <p className="skill-img">
-                  <Image src="/img/skills/laravel.png" alt="laravel" width={60} height={60} />
+                  <Image src="/img/skills/laravel-icon.svg" alt="laravel" width={60} height={60} />
                 </p>
                 <div className="skill-body">
                   <h3 className="skill-name">Laravel</h3>
@@ -215,7 +215,7 @@ export default function Home() {
               </div>
               <div className="skill-item">
                 <p className="skill-img">
-                  <Image src="/img/skills/cakephp.png" alt="cakephp" width={60} height={60} />
+                  <Image src="/img/skills/cakephp-icon.svg" alt="cakephp" width={60} height={60} />
                 </p>
                 <div className="skill-body">
                   <h3 className="skill-name">CakePHP</h3>
@@ -224,7 +224,7 @@ export default function Home() {
               </div>
               <div className="skill-item">
                 <p className="skill-img">
-                  <Image src="/img/skills/codeigniter.png" alt="codeigniter" width={60} height={60} />
+                  <Image src="/img/skills/codeigniter-icon.svg" alt="codeigniter" width={60} height={60} />
                 </p>
                 <div className="skill-body">
                   <h3 className="skill-name">CodeIgniter</h3>
@@ -233,7 +233,7 @@ export default function Home() {
               </div>
               <div className="skill-item">
                 <p className="skill-img">
-                  <Image src="/img/skills/docker.png" alt="docker" width={60} height={60} />
+                  <Image src="/img/skills/docker-icon.svg" alt="docker" width={60} height={60} />
                 </p>
                 <div className="skill-body">
                   <h3 className="skill-name">Docker</h3>
