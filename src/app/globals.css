@@ -28,7 +28,7 @@ body {
 .loader__backdrop {
   position: fixed;
   inset: 0;
-  background: #212121; /* 紺色背景 */
+  background: #222222;
   display: grid;
   place-items: center;
   z-index: 9999;

@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useMemo, useRef, useState } from "react";
+import Hls from "hls.js";
 
 export default function MV() {
   const [startTitleAnim, setStartTitleAnim] = useState(false);
@@ -7,7 +8,11 @@ export default function MV() {
   const [showTagline, setShowTagline] = useState(false);
   const firedRef = useRef(false);
 
+  const videoRef = useRef(null);
+  const hlsRef = useRef(null);
+
   const title = "YUSUKE ISHIYAMA";
+  const srcHls = "/video/hls/main.m3u8";
 
   const lastVisibleIndex = useMemo(() => {
     const chars = title.split("");
@@ -21,6 +26,35 @@ export default function MV() {
     return () => document.removeEventListener("loader:done", onDone);
   }, []);
 
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video || !showBg) return;
+
+    const canPlayNativeHls =
+      video.canPlayType("application/vnd.apple.mpegURL") === "probably" ||
+      video.canPlayType("application/vnd.apple.mpegURL") === "maybe";
+
+    if (canPlayNativeHls) {
+      video.src = srcHls;
+      video.play().catch(() => {});
+    } else if (Hls.isSupported()) {
+      const hls = new Hls();
+      hlsRef.current = hls;
+      hls.loadSource(srcHls);
+      hls.attachMedia(video);
+      hls.on(Hls.Events.MANIFEST_PARSED, () => {
+        video.play().catch(() => {});
+      });
+    }
+
+    return () => {
+      if (hlsRef.current) {
+        hlsRef.current.destroy();
+        hlsRef.current = null;
+      }
+    };
+  }, [showBg, srcHls]);
+
   const handleLastCharEnd = () => {
     if (firedRef.current) return;
     firedRef.current = true;
@@ -33,13 +67,14 @@ export default function MV() {
       <div className="mv-container">
         <div className="mv-bg">
           <video
+            ref={videoRef}
             className={`mv-container-video ${showBg ? "is-visible" : ""}`}
-            src="/video/main.mp4"
             autoPlay
             loop
             muted
             playsInline
             preload="metadata"
+            aria-hidden="true"
           />
         </div>
 
@@ -67,10 +102,7 @@ export default function MV() {
             Engineering Dreams into Reality
           </p>
         </div>
-        <div
-          className={`mv-scroll ${showTagline ? "is-visible" : ""}`}
-          aria-hidden="true"
-        >
+        <div className={`mv-scroll ${showTagline ? "is-visible" : ""}`} aria-hidden="true">
           <span className="mv-scroll__label">scroll</span>
           <span className="mv-scroll__line" />
         </div>

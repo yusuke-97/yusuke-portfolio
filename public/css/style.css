@@ -2,7 +2,8 @@ body {
     font-family: "Inter", "Montserrat", "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
     font-size: 15px;
     letter-spacing: .05em;
-    color: #001B47;
+    /* color: #001B47; */
+    color: #F1F5F9;
   }
   
   a {
@@ -31,14 +32,11 @@ body {
   ---------------------------------*/
   main {
     /* padding-top: 66px; */
+    background: #222222;
   }
   
   .section {
     padding: 90px 0;
-  }
-  
-  .section:nth-of-type(odd) {
-    background-color: #f7f7f7;
   }
   
   .cmn-container {
@@ -166,7 +164,7 @@ body {
     justify-content: center;
     height: auto;
     text-align: center;
-    background-color: #212121;
+    background-color: #222222;
     position: relative;
     overflow: hidden;
     z-index: 1;
@@ -175,7 +173,7 @@ body {
   .mv,
   .mv .mv-container {
     height: 100vh;
-    background-color: #212121;
+    background-color: #222222;
   }
 
   .mv .mv-container {
