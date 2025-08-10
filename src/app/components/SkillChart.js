@@ -31,7 +31,6 @@ export default function SkillChart() {
 
     if (!ctx) return;
 
-    // すでにインスタンスがある場合は破棄
     if (chartInstanceRef.current) {
       chartInstanceRef.current.destroy();
     }
@@ -44,10 +43,10 @@ export default function SkillChart() {
           {
             label: "My Skill Level",
             data: [5, 4, 4, 3, 4, 4],
-            backgroundColor: "rgba(0, 66, 173, 0.2)",
-            borderColor: "#0042AD",
+            backgroundColor: "rgba(239, 224, 174, 0.2)",
+            borderColor: "#EFE0AE",
             borderWidth: 2,
-            pointBackgroundColor: "#001B47",
+            pointBackgroundColor: "#EFE0AE",
           },
         ],
       },
@@ -60,15 +59,19 @@ export default function SkillChart() {
             max: 5,
             ticks: {
               stepSize: 1,
-              color: "#333",
-              font: { size: 14 },
+              color: "#F1F5F9",
+              font: { size: 16 },
+              showLabelBackdrop: false,
             },
             pointLabels: {
-              color: "#333",
+              color: "#F1F5F9",
               font: { size: 16 },
             },
             grid: {
-              color: "rgba(0, 0, 0, 0.1)",
+              color: "rgba(241, 245, 249, 0.4)",
+            },
+            angleLines: {
+              color: "rgba(241, 245, 249, 0.4)",
             },
           },
         },

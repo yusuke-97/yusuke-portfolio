@@ -54,16 +54,19 @@ main {
 }
 
 .title-jp {
-  font-size: 12px;
-  font-weight: 400;
-  color: #2C3B4D;
+  display: inline-block;
+  font-size: 16px;
+  margin-bottom: 8px;
+  background: linear-gradient(180deg, #8E9EAB 0%, #EEF2F3 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .title-en {
   font-size: 48px;
   font-weight: bold;
   margin-bottom: 40px;
-  background: linear-gradient(180deg, #0042AD 0%, #001B47 100%);
+  background: linear-gradient(180deg, #EEF2F3 0%, #8E9EAB 94%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   display: block;
@@ -425,17 +428,18 @@ main {
   width: 45%;
 }
 
+.skill-rating-item {
+  margin-top: 24px;
+}
+
 .skill-rating h3 {
-  font-size: 18px;
-  margin-top: 20px;
-  color: #001B47;
+  font-size: 20px;
   font-weight: bold;
+  margin-bottom: 16px;
 }
 
 .skill-rating p {
-  font-size: 14px;
-  margin: 5px 0;
-  color: #333;
+  font-size: 16px;
 }
 
 .skill-list {
@@ -450,13 +454,13 @@ main {
   align-items: flex-start;
   justify-content: space-between;
   width: 48%;
-  margin-bottom: 50px;
+  margin-bottom: 48px;
 }
 
 .skill-img {
   width: 60px;
   height: auto;
-  margin-right: 20px;
+  margin-right: 24px;
 }
 
 .skill-body {
@@ -464,14 +468,13 @@ main {
 }
 
 .skill-name {
-  margin-bottom: 10px;
+  margin-bottom: 12px;
   font-weight: bold;
-  font-size: 1.2em;
+  font-size: 20px;
 }
 
 .skill-text {
-  font-size: 14px;
-  line-height: 1.8;
+  font-size: 16px;
 }
 
 /*--------------------------------
