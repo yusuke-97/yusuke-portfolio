@@ -13,6 +13,13 @@ export default function Loader() {
   const startRef = useRef(null);
 
   useEffect(() => {
+    document.body.classList.add("lock--loader");
+    return () => {
+      document.body.classList.remove("lock--loader");
+    };
+  }, []);
+
+  useEffect(() => {
     const tick = (t) => {
       if (!startRef.current) startRef.current = t;
       const elapsed = t - startRef.current;
@@ -25,6 +32,7 @@ export default function Loader() {
       } else {
         setTimeout(() => {
           setVisible(false);
+          document.body.classList.remove("lock--loader");
           document.dispatchEvent(new Event("loader:done"));
         }, 120);
       }

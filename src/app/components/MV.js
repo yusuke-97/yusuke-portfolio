@@ -55,6 +55,15 @@ export default function MV() {
     };
   }, [showBg, srcHls]);
 
+  useEffect(() => {
+    if (!showTagline) {
+      document.body.classList.add("lock--mv");
+      return () => document.body.classList.remove("lock--mv");
+    } else {
+      document.body.classList.remove("lock--mv");
+    }
+  }, [showTagline]);
+
   const handleLastCharEnd = async () => {
     if (firedRef.current) return;
     firedRef.current = true;

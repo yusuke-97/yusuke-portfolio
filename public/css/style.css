@@ -2,8 +2,14 @@ body {
   font-family: var(--font-inter), var(--font-montserrat), sans-serif;
   font-size: 15px;
   letter-spacing: .05em;
-  /* color: #001B47; */
   color: #F1F5F9;
+}
+
+body.lock--loader,
+body.lock--mv {
+  overflow: hidden !important;
+  height: 100%;
+  overscroll-behavior: none;
 }
 
 a {
