@@ -55,12 +55,22 @@ export default function MV() {
     };
   }, [showBg, srcHls]);
 
-  const handleLastCharEnd = () => {
+  const handleLastCharEnd = async () => {
     if (firedRef.current) return;
     firedRef.current = true;
+  
+    try {
+      await fetch("/api/hls-token", {
+        cache: "no-store",
+        credentials: "same-origin",
+      });
+    } catch (e) {
+      console.warn("hls-token fetch failed", e);
+    }
+  
     setShowBg(true);
     setTimeout(() => setShowTagline(true), 300);
-  };
+  };  
 
   return (
     <div className="mv">

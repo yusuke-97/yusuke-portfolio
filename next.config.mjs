@@ -3,17 +3,22 @@ const nextConfig = {
   async headers() {
     return [
       {
-        // HLS配下に共通ヘッダーを付与
-        source: "/video/hls/:path*",
+        source: "/video/hls/:path*.m3u8",
         headers: [
-          // ブラウザによるMIME推測を抑止（念のため）
           { key: "X-Content-Type-Options", value: "nosniff" },
-          // ★開発中はキャッシュ無効、本番で 1年キャッシュなどに変更
-          { key: "Cache-Control", value: "public, max-age=0, must-revalidate" },
+          { key: "Cache-Control", value: "private, no-store" },
+          { key: "Cross-Origin-Resource-Policy", value: "same-origin" },
+        ],
+      },
+      {
+        source: "/video/hls/:path*.ts",
+        headers: [
+          { key: "X-Content-Type-Options", value: "nosniff" },
+          { key: "Cache-Control", value: "private, max-age=0, must-revalidate" },
+          { key: "Cross-Origin-Resource-Policy", value: "same-origin" },
         ],
       },
     ];
   },
 };
-
 export default nextConfig;
