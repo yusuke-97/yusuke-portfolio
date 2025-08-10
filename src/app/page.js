@@ -9,8 +9,31 @@ import { useEffect, useState, useRef } from "react";
 
 export default function Home() {
   useFadeInScroll();
-  const [submitImg, setSubmitImg] = useState("/img/button-submit.png"); // ボタン画像
+  const [submitImg, setSubmitImg] = useState("/img/button-submit.png");
   const formRef = useRef(null);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const { history, location } = window;
+    const prev = history.scrollRestoration;
+
+    if ("scrollRestoration" in history) {
+      history.scrollRestoration = "manual";
+    }
+
+    const hasHash = location.hash && location.hash.length > 1;
+
+    if (!hasHash) {
+      requestAnimationFrame(() => {
+        window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+      });
+    }
+
+    return () => {
+      if (prev) history.scrollRestoration = prev;
+    };
+  }, []);
 
   useEffect(() => {
     const handleAnchorClick = (e) => {
