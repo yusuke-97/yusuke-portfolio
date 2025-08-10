@@ -1,19 +1,17 @@
-import { Geist, Geist_Mono, Montserrat } from "next/font/google";
+import { Inter, Montserrat } from "next/font/google";
 import "./globals.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Loader from "./components/Loader";
 
-const montserrat = Montserrat({ subsets: ['latin'] });
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inter = Inter({
   subsets: ["latin"],
+  variable: "--font-inter"
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const montserrat = Montserrat({
   subsets: ["latin"],
+  variable: "--font-montserrat"
 });
 
 export const metadata = {
@@ -28,7 +26,7 @@ export default function RootLayout({ children }) {
         <link rel="stylesheet" href="/css/ress.css" />
         <link rel="stylesheet" href="/css/style.css" />
       </head>
-      <body className={montserrat.className}>
+      <body className={`${inter.variable} ${montserrat.variable}`}>
         <Loader />
         <Header />
         {children}

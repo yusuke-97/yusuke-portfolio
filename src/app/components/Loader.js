@@ -84,7 +84,6 @@ export default function Loader() {
             y="50%"
             textAnchor="middle"
             dominantBaseline="middle"
-            fontFamily="'Montserrat', system-ui, -apple-system, sans-serif"
             fontWeight="600"
             fontSize="72"
             fill="#F1F5F9"
