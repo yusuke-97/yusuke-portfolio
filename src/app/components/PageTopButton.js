@@ -19,19 +19,6 @@ export default function PageTopButton() {
       } else {
         pageTop.classList.remove("show");
       }
-
-      // フッターとの重なりをチェック
-      const footer = document.querySelector(".footer");
-      if (footer) {
-        const footerTop = footer.getBoundingClientRect().top + window.pageYOffset;
-        const scrollBottom = scrollY + window.innerHeight;
-
-        if (scrollBottom > footerTop) {
-          pageTop.classList.add("is-footer");
-        } else {
-          pageTop.classList.remove("is-footer");
-        }
-      }
     };
 
     window.addEventListener("scroll", handleScroll);

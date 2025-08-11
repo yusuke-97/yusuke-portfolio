@@ -650,10 +650,6 @@ main {
   display: block; 
 }
 
-/* アイコンがフッターに重なった時のスタイル */
-.page-top.is-footer .page-top-icon {
-  filter: brightness(0) invert(1);
-}
 /*--------------------------------
   フッター
 ---------------------------------*/
