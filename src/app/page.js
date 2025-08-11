@@ -301,7 +301,7 @@ export default function Home() {
               <input type="hidden" name="replyTo" value="" />
               <input type="hidden" name="redirectTo" value="" />
 
-              <div>
+              <div className="contact-field">
                 <div className="contact-heading">
                   <label className="contact-label contact-label-mobile">お名前</label>
                   <span className="contact-span contact-span-mobile">必須</span>
@@ -311,7 +311,7 @@ export default function Home() {
                 </div>
               </div>
 
-              <div>
+              <div className="contact-field">
                 <div className="contact-heading">
                   <label className="contact-label contact-label-mobile">フリガナ</label>
                   <span className="contact-span contact-span-mobile">必須</span>
@@ -321,7 +321,7 @@ export default function Home() {
                 </div>
               </div>
 
-              <div>
+              <div className="contact-field">
                 <div className="contact-heading">
                   <label className="contact-label">メールアドレス</label>
                   <span className="contact-span">必須</span>
@@ -331,7 +331,7 @@ export default function Home() {
                 </div>
               </div>
 
-              <div>
+              <div className="contact-field">
                 <div className="contact-heading">
                   <label className="contact-label">お問い合わせ内容</label>
                   <span className="contact-span">必須</span>
@@ -341,7 +341,9 @@ export default function Home() {
                 </div>
               </div>
 
-              <input id="submit" type="image" src={submitImg} alt="送信する" />
+              <div style={{ width: "min(760px, 100%)", display: "flex", justifyContent: "center" }}>
+                <button type="submit" className="contact-submit">送 信</button>
+              </div>
             </form>
           </div>
         </section>
