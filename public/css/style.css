@@ -441,6 +441,7 @@ main {
 .skill-rating h3 {
   font-size: 20px;
   font-weight: bold;
+  color: #EFE0AE;
   margin-bottom: 16px;
 }
 
@@ -491,6 +492,7 @@ main {
   flex-wrap: wrap;
   margin: 0 auto;
 }
+
 .profile-img {
   display: flex;
   align-items: center;
@@ -499,21 +501,26 @@ main {
   margin-right: 40px;
 }
 
+.profile-img img {
+  border-radius: 50%;
+  opacity: 0.8;
+}
+
 .profile-body {
   flex: 1;
 }
 
 .profile-body p {
-  font-size: 14px;
-  line-height: 1.8;
+  font-size: 16px;
+  line-height: 2;
 }
 
 .profile-body p:not(:last-child) {
-  margin-bottom: 30px;
+  margin-bottom: 32px;
 }
 
 .profile-body .profile-name {
-  font-size: 18px;
+  font-size: 24px;
   font-weight: bold;
 }
 
@@ -650,75 +657,17 @@ main {
 /*--------------------------------
   フッター
 ---------------------------------*/
-.copyright {
-  font-size: 10px;
+.footer {
+  padding: 20px 48px;
+  width: 100%;
+  background-color: #111111;
+}
+
+.footer .copyright {
+  font-size: 14px;
   text-align: center;
   color: #F1F5F9;
-  margin-top: 100px;
 }
-
-.footer {
-  padding: 20px 40px;
-  width: 100%;
-  background-color: #001B47;
-}
-
-.footer .inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.footer-logo {
-  font-size: 20px;
-  font-weight: bold;
-  line-height: 1.2;
-  margin-right: 20px;
-  letter-spacing: .05em;
-}
-
-.footer-logo a {
-  color: #F1F5F9;
-}
-
-.footer .gnav-list {
-  display: flex;
-  justify-content: space-between;
-  list-style: none;
-}
-
-.footer .gnav-item:not(:last-child) {
-  margin-right: 20px;
-}
-
-.footer .gnav-item a {
-  position: relative;
-  font-size: 13px;
-  font-weight: bold;
-  display: inline-block;
-  padding: 5px 0;
-  transition: .3s;
-  letter-spacing: .05em;
-  color: #F1F5F9;
-}
-
-.footer .gnav-item a:after {
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  width: 0;
-  height: 1px;
-  content: "";
-  transition: .3s;
-  -webkit-transform: translateX(-50%);
-  transform: translateX(-50%);
-  background-color: #F1F5F9;
-}
-
-.footer .gnav-item a:hover:after {
-  width: 100%;
-}
-
 
 /*--------------------------------
   下層：Worksページ

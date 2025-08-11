@@ -5,7 +5,7 @@ import Link from "next/link";
 export default function Footer() {
   return (
     <footer className="footer">
-      <div className="inner">
+      {/* <div className="inner">
         <h1 className="footer-logo">
           <Link href="/">YUSUKE ISHIYAMA</Link>
         </h1>
@@ -25,7 +25,7 @@ export default function Footer() {
             </li>
           </ul>
         </nav>
-      </div>
+      </div> */}
       <div className="copyright">&copy;YUSUKE ISHIYAMA</div>
     </footer>
   );
