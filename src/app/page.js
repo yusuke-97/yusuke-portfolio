@@ -9,7 +9,7 @@ import { useEffect, useState, useRef } from "react";
 
 export default function Home() {
   useFadeInScroll();
-  const [submitImg, setSubmitImg] = useState("/img/button-submit.png");
+  const [formValid, setFormValid] = useState(false);
   const formRef = useRef(null);
 
   useEffect(() => {
@@ -67,7 +67,7 @@ export default function Home() {
     const message = form.message.value.trim();
 
     const valid = name && furigana && email.includes("@") && email.includes(".") && message;
-    setSubmitImg(valid ? "/img/button-submit-blue.png" : "/img/button-submit.png");
+    setFormValid(valid);
     return valid;
   };
 
@@ -88,7 +88,6 @@ export default function Home() {
       if (res.ok) {
         alert("送信が完了しました。ありがとうございます。");
         form.reset();
-        setSubmitImg("/img/button-submit.png"); // 初期に戻す
       } else {
         alert("送信に失敗しました。再度お試しください。");
       }
@@ -100,10 +99,6 @@ export default function Home() {
 
   const handleBlur = () => {
     validateForm();
-  };
-
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
@@ -307,7 +302,7 @@ export default function Home() {
                   <span className="contact-span contact-span-mobile">必須</span>
                 </div>
                 <div className="contact-form">
-                  <input id="name" name="name" placeholder="入力してください" className="contact-textbox" onBlur={handleBlur} />
+                  <input id="name" name="name" placeholder="入力してください" className="contact-textbox" onBlur={handleBlur} onInput={handleBlur} />
                 </div>
               </div>
 
@@ -317,7 +312,7 @@ export default function Home() {
                   <span className="contact-span contact-span-mobile">必須</span>
                 </div>
                 <div className="contact-form">
-                  <input id="furigana" name="furigana" placeholder="入力してください" className="contact-textbox" onBlur={handleBlur} />
+                  <input id="furigana" name="furigana" placeholder="入力してください" className="contact-textbox" onBlur={handleBlur} onInput={handleBlur} />
                 </div>
               </div>
 
@@ -327,7 +322,7 @@ export default function Home() {
                   <span className="contact-span">必須</span>
                 </div>
                 <div className="contact-form">
-                  <input id="email" name="email" placeholder="入力してください" className="contact-textbox" onBlur={handleBlur} />
+                  <input id="email" name="email" placeholder="入力してください" className="contact-textbox" onBlur={handleBlur} onInput={handleBlur} />
                 </div>
               </div>
 
@@ -337,12 +332,27 @@ export default function Home() {
                   <span className="contact-span">必須</span>
                 </div>
                 <div className="contact-form">
-                  <textarea id="message" name="message" placeholder="入力してください" className="contact-textarea" onBlur={handleBlur}></textarea>
+                  <textarea id="message" name="message" placeholder="入力してください" className="contact-textarea" onBlur={handleBlur} onInput={handleBlur}></textarea>
                 </div>
               </div>
 
-              <div style={{ width: "min(760px, 100%)", display: "flex", justifyContent: "center" }}>
-                <button type="submit" className="contact-submit">送 信</button>
+              <div className="contact-btn-wrap">
+                <button
+                  type="submit"
+                  className={`contact-submit ${formValid ? "is-active" : ""}`}
+                  disabled={!formValid}
+                >
+                  送 信
+                  <Image
+                    src={formValid ? "/img/button-submit-black.svg" : "/img/button-submit-gold.svg"}
+                    alt=""
+                    width={20}
+                    height={20}
+                    className="contact-submit-icon"
+                    aria-hidden="true"
+                    priority
+                  />
+                </button>
               </div>
             </form>
           </div>
