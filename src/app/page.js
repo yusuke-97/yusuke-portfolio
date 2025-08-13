@@ -88,11 +88,11 @@ export default function Home() {
       if (res.ok) {
         alert("送信が完了しました。ありがとうございます。");
         form.reset();
+        setFormValid(false);
       } else {
         alert("送信に失敗しました。再度お試しください。");
       }
     } catch (error) {
-      console.error(error);
       alert("送信中にエラーが発生しました。");
     }
   };
