@@ -1,18 +1,35 @@
 "use client";
-import { useState, useEffect } from "react";
+
+import { useEffect, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function Header() {
-  const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
+  const isTopPage = pathname === "/";
+
+  const [scrolled, setScrolled] = useState(!isTopPage);
 
   useEffect(() => {
-    const handleScroll = () => {
-      // 画面の高さ 100vh を基準に変更
-      setScrolled(window.scrollY > window.innerHeight);
+    if (!isTopPage) {
+      setScrolled(true);
+      return;
+    }
+
+    const onScrollOrResize = () => {
+      const threshold = window.innerHeight;
+      setScrolled(window.scrollY > threshold);
     };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+
+    onScrollOrResize();
+
+    window.addEventListener("scroll", onScrollOrResize, { passive: true });
+    window.addEventListener("resize", onScrollOrResize);
+    return () => {
+      window.removeEventListener("scroll", onScrollOrResize);
+      window.removeEventListener("resize", onScrollOrResize);
+    };
+  }, [isTopPage, pathname]);
 
   return (
     <header className={`header ${scrolled ? "scrolled" : ""}`}>
