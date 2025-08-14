@@ -403,30 +403,51 @@ main {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  gap: 30px;
   margin-bottom: 120px;
 }
 
-.chart-container {
+.skill-content .chart-container {
   width: 50%;
 }
 
-.skill-rating {
+.skill-content .skill-rating {
   width: 45%;
 }
 
-.skill-rating-item {
-  margin-top: 24px;
+.skill-content .skill-rating .skill-rating-item {
+  margin-top: 32px;
 }
 
-.skill-rating h3 {
-  font-size: 20px;
-  font-weight: bold;
+.skill-content .skill-rating .skill-rating-item:first-child {
+  margin-top: 0;
+}
+
+.skill-content .skill-rating .skill-rating-item .skill-rating-heading {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.skill-content .skill-rating .skill-rating-item .skill-rating-heading .skill-rating-number {
+  display: flex;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+}
+
+.skill-content .skill-rating .skill-rating-item .skill-rating-heading img{
+  width: auto;
+  height: 28px;
+}
+
+.skill-content .skill-rating .skill-rating-item .skill-rating-heading  span{
   color: #EFE0AE;
-  margin-bottom: 16px;
+  font-size: 20px;
+  font-weight: 600;
 }
 
-.skill-rating p {
+.skill-content .skill-rating .skill-rating-item p {
   font-size: 16px;
 }
 

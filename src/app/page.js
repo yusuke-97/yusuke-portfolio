@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import MV from "./components/MV";
-import SkillChart from "./components/SkillChart";
+import SkillSection from "./components/SkillSection";
 import PageTopButton from "./components/PageTopButton";
 import useFadeInScroll from "./hooks/useFadeInScroll";
 import { useEffect, useState, useRef } from "react";
@@ -153,134 +153,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="skill section" id="skill">
-          <div className="cmn-container fade-in">
-            <h2 className="title fade-in">
-              <span className="title-jp">できること</span>
-              <span className="title-en">SKILL</span>
-            </h2>
-            <div className="skill-content fade-in">
-              <div className="chart-container">
-                <SkillChart />
-              </div>
-              <div className="skill-rating">
-                <div className="skill-rating-item">
-                  <h3>5. Expert</h3>
-                  <p>専門知識を持ち、プロジェクト全体を主導し戦略的な設計やアーキテクチャの決定が可能。</p>
-                </div>
-                <div className="skill-rating-item">
-                  <h3>4. Advanced</h3>
-                  <p>応用的なスキルを持ち、チームメンバーをサポート・指導しながら高度な問題に対応可能。</p>
-                </div>
-                <div className="skill-rating-item">
-                  <h3>3. Independent</h3>
-                  <p>自立して標準的なタスクを遂行でき、中規模プロジェクトに貢献可能な段階。</p>
-                </div>
-                <div className="skill-rating-item">
-                  <h3>2. Proficient</h3>
-                  <p>実務で指導を受けながら作業でき、小規模なタスクを遂行できる段階。</p>
-                </div>
-                <div className="skill-rating-item">
-                  <h3>1. Foundation</h3>
-                  <p>基礎的な知識を持ち、個人学習や独学レベルで基本的な作業ができる状態。</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="skill-list fade-in">
-              <div className="skill-item">
-                <div className="skill-img">
-                  <Image src="/img/skills/html-icon.svg" alt="html" width={60} height={60} />
-                </div>
-                <div className="skill-body">
-                  <h3 className="skill-name">HTML/CSS</h3>
-                  <p className="skill-text">スマホで見ても表示崩れのないレスポンシブ対応も可能です。</p>
-                </div>
-              </div>
-              <div className="skill-item">
-                <div className="skill-img">
-                  <Image src="/img/skills/js-icon.svg" alt="javascript" width={60} height={60} />
-                </div>
-                <div className="skill-body">
-                  <h3 className="skill-name">JavaScript</h3>
-                  <p className="skill-text">お問い合わせフォームや自動スクロールなど動きのあるWebサイトを作ることが可能です。</p>
-                </div>
-              </div>
-              <div className="skill-item">
-                <div className="skill-img">
-                  <Image src="/img/skills/jquery-icon.svg" alt="jquery" width={60} height={60} />
-                </div>
-                <div className="skill-body">
-                  <h3 className="skill-name">jQuery</h3>
-                  <p className="skill-text">Webサイトにフェードイン・フェードアウトなどリッチな動きをつけることが可能です。</p>
-                </div>
-              </div>
-              <div className="skill-item">
-                <div className="skill-img">
-                  <Image src="/img/skills/vuejs-icon.svg" alt="vue" width={60} height={60} />
-                </div>
-                <div className="skill-body">
-                  <h3 className="skill-name">Vue.js</h3>
-                  <p className="skill-text">Vue.jsを用いて、Webアプリケーションに複雑な動きをつけることが可能です。</p>
-                </div>
-              </div>
-              <div className="skill-item">
-                <div className="skill-img" style={{ height: 60, display: "flex", alignItems: "center", justifyContent: "center" }}>
-                  <Image src="/img/skills/php-icon.svg" alt="php" width={60} height={60} />
-                </div>
-                <div className="skill-body">
-                  <h3 className="skill-name">PHP</h3>
-                  <p className="skill-text">PHPを用いて、動きのあるWebアプリケーションを開発することが可能です。</p>
-                </div>
-              </div>
-              <div className="skill-item">
-                <div className="skill-img">
-                  <Image src="/img/skills/laravel-icon.svg" alt="laravel" width={60} height={60} />
-                </div>
-                <div className="skill-body">
-                  <h3 className="skill-name">Laravel</h3>
-                  <p className="skill-text">Laravelを用いて、小規模なMVCのWebアプリケーションを開発することが可能です。</p>
-                </div>
-              </div>
-              <div className="skill-item">
-                <div className="skill-img">
-                  <Image src="/img/skills/cakephp-icon.svg" alt="cakephp" width={60} height={60} />
-                </div>
-                <div className="skill-body">
-                  <h3 className="skill-name">CakePHP</h3>
-                  <p className="skill-text">CakePHPを用いて、MVCのWebアプリケーションの開発・保守が可能です。</p>
-                </div>
-              </div>
-              <div className="skill-item">
-                <div className="skill-img">
-                  <Image src="/img/skills/codeigniter-icon.svg" alt="codeigniter" width={60} height={60} />
-                </div>
-                <div className="skill-body">
-                  <h3 className="skill-name">CodeIgniter</h3>
-                  <p className="skill-text">CodeIgniterを用いて、MVCのWebアプリケーションの開発・保守が可能です。</p>
-                </div>
-              </div>
-              <div className="skill-item">
-                <div className="skill-img">
-                  <Image src="/img/skills/docker-icon.svg" alt="docker" width={60} height={60} />
-                </div>
-                <div className="skill-body">
-                  <h3 className="skill-name">Docker</h3>
-                  <p className="skill-text">コンテナ仮想化を用いてアプリケーションを開発・配置・実行することが可能です。</p>
-                </div>
-              </div>
-              <div className="skill-item">
-                <div className="skill-img">
-                  <Image src="/img/skills/nextjs-icon.svg" alt="docker" width={60} height={60} />
-                </div>
-                <div className="skill-body">
-                  <h3 className="skill-name">Next.js</h3>
-                  <p className="skill-text">Next.jsを用いて、リッチな動きをつけたサイトを開発することができます。</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+        <SkillSection />
 
         <section className="about section" id="about">
           <div className="cmn-container fade-in">
@@ -290,7 +163,7 @@ export default function Home() {
             </h2>
             <div className="profile fade-in">
               <div className="profile-img">
-                <Image src="/img/about.jpeg" alt="about" width={400} height={300} />
+                <Image src="/img/about.jpeg" alt="about" width={300} height={300} />
               </div>
               <div className="profile-body">
                 <p className="profile-name">石山 優友</p>

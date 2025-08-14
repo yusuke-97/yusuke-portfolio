@@ -42,7 +42,7 @@ export default function SkillChart() {
         datasets: [
           {
             label: "My Skill Level",
-            data: [5, 4, 4, 3, 4, 4],
+            data: [4, 3, 3, 2, 3, 3],
             backgroundColor: "rgba(239, 224, 174, 0.2)",
             borderColor: "#EFE0AE",
             borderWidth: 2,
