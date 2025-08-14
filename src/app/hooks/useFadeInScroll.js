@@ -1,26 +1,55 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function useFadeInScroll() {
   const [showPageTop, setShowPageTop] = useState(false);
+  const rafRef = useRef(0);
+
   useEffect(() => {
-    const handleScroll = () => {
+    if (typeof window === "undefined") return;
+
+    const check = () => {
       setShowPageTop(window.scrollY > 300);
-      document.querySelectorAll(".fade-in").forEach((el) => {
+
+      const els = document.querySelectorAll(".fade-in");
+      const winH = window.innerHeight || document.documentElement.clientHeight;
+
+      els.forEach((el) => {
         const rect = el.getBoundingClientRect();
-        const windowHeight = window.innerHeight;
-        if (rect.top < windowHeight - 50) {
+        if (rect.top < winH - 50) {
           el.classList.add("active");
         }
       });
     };
 
-    window.addEventListener("scroll", handleScroll);
-    window.addEventListener("load", handleScroll);
-    // handleScroll();
+    const onScrollOrResize = () => {
+      cancelAnimationFrame(rafRef.current);
+      rafRef.current = requestAnimationFrame(check);
+    };
+
+    window.addEventListener("scroll", onScrollOrResize);
+    window.addEventListener("resize", onScrollOrResize);
+
+    requestAnimationFrame(check);
+
+    window.addEventListener("load", check);
+
+    const onLoaderDone = () => requestAnimationFrame(check);
+    document.addEventListener("loader:done", onLoaderDone);
+
+    try {
+      if (sessionStorage.getItem("loaderShown") === "1") {
+        requestAnimationFrame(check);
+      }
+    } catch {}
 
     return () => {
-      window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("load", handleScroll);
+      window.removeEventListener("scroll", onScrollOrResize);
+      window.removeEventListener("resize", onScrollOrResize);
+      window.removeEventListener("load", check);
+      document.removeEventListener("loader:done", onLoaderDone);
+      cancelAnimationFrame(rafRef.current);
     };
   }, []);
+
+  return { showPageTop };
 }
