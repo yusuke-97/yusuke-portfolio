@@ -114,16 +114,40 @@ export default function Home() {
             </h2>
             <div className="works-list fade-in">
               <a className="works-item" href="/works/ishistagram">
-                <div className="works-img">
-                  <Image src="/img/works/ishistagram.png" alt="ishistagram" width={400} height={300} />
+                <div className="works-img-wrap">
+                  <Image className="works-img" src="/img/works/ishistagram.png" alt="ishistagram" width={828} height={621} />
                 </div>
-                <p className="works-name">画像投稿型SNS【架空アプリ】</p>
+                <div className="works-info">
+                  <div className="works-meta">
+                    <span className="badge">架空アプリ</span>
+                    <time className="date">2023.08</time>
+                  </div>
+                  <p className="works-title">画像投稿型SNSのWebアプリ</p>
+                </div>
               </a>
               <a className="works-item" href="/works/foodie-scout">
-                <div className="works-img">
-                  <Image src="/img/works/foodie-scout.png" alt="foodie-scout" width={400} height={300} />
+                <div className="works-img-wrap">
+                  <Image className="works-img" src="/img/works/foodie-scout.png" alt="foodie-scout" width={828} height={621} />
                 </div>
-                <p className="works-name">飲食店予約サービス【架空アプリ】</p>
+                <div className="works-info">
+                  <div className="works-meta">
+                    <span className="badge">架空アプリ</span>
+                    <time className="date">2023.11</time>
+                  </div>
+                  <p className="works-title">飲食店予約サービスのWebアプリ</p>
+                </div>
+              </a>
+              <a className="works-item" href="/">
+                <div className="works-img-wrap">
+                  <Image className="works-img" src="/img/works/portfolio.png" alt="foodie-scout" width={828} height={621} />
+                </div>
+                <div className="works-info">
+                  <div className="works-meta">
+                    <span className="badge">リニューアル</span>
+                    <time className="date">2025.08</time>
+                  </div>
+                  <p className="works-title">ポートフォリオサイト</p>
+                </div>
               </a>
             </div>
           </div>

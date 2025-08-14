@@ -46,7 +46,7 @@ main {
 }
 
 .cmn-container {
-  max-width: 1140px;
+  max-width: 1280px;
   margin: 0 auto;
   padding: 0 40px;
 }
@@ -346,41 +346,6 @@ main {
 /*--------------------------------
   Works
 ---------------------------------*/
-.works-item {
-  margin-bottom: 40px;
-  color: #333;
-}
-
-.works-item:hover {
-  opacity: .9;
-}
-
-.works-item:nth-of-type(3n) {
-  margin-right: 0;
-}
-
-.works-img {
-  display: inline-block;
-  overflow: hidden;
-  width: 100%;
-}
-
-.works-img img {
-  border: 1px solid #e6e6e6;
-  transition: box-shadow 0.3s ease, transform 0.3s ease;
-}
-
-.works-img img:hover {
-  box-shadow: 10px 10px 4px rgba(0, 27, 71, 0.5);
-  transform: translate(-5px, -5px);
-}
-
-.works-info {
-  font-size: 10px;
-  margin-top: 5px;
-}
-
-/* Works */
 .works-list {
   display: flex;
   flex-wrap: wrap;
@@ -390,28 +355,44 @@ main {
   padding: 0;
 }
 
-.works-item {
-  flex: 0 1 calc(40%);
-  margin-bottom: 40px;
+.works-list .works-item {
+  flex: 0 1 calc(30%);
 }
 
-.works-item:nth-of-type(3n) {
-  margin-right: 0;
+.works-list .works-item .works-img-wrap {
+  display: inline-block;
+  overflow: hidden;
+  width: 100%;
 }
 
-.works-img img {
+.works-list .works-item .works-img-wrap .works-img {
   width: 100%;
   display: block;
-  border: 1px solid #e6e6e6;
-  transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
 
-.works-name {
-  color: #001B47;
-  font-size: 14px;
-  font-weight: bold;
-  margin-top: 24px;
-  text-align: center;
+.works-list .works-item .works-info {
+  margin-top: 12px;
+  color: #F1F5F9;
+}
+
+.works-list .works-item .works-info .works-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 12px;
+}
+
+.works-list .works-item .works-info .works-meta .badge {
+  display: inline-block;
+  padding: 2px 6px;
+  font-size: 12px;
+  border: 1px solid #F1F5F9;
+  border-radius: 4px;
+}
+
+.works-list .works-item .works-info .works-title {
+  font-size: 16px;
+  margin-top: 8px;
 }
 
 
@@ -1031,7 +1012,7 @@ main {
   }
 
   /* Works */
-  .works-name {
+  .works-title {
     font-size: 1.6vw;
     margin-top: 16px;
   }
@@ -1271,7 +1252,7 @@ main {
     flex-wrap: nowrap;
   }
 
-  .works-name {
+  .works-title {
     font-size: 2.8vw;
     margin-top: 3%;
   }
@@ -1280,7 +1261,7 @@ main {
     width: 100%;
   }
 
-  .works-img img {
+  .works-img-wrap img {
     width: 100%;;
   }
 
