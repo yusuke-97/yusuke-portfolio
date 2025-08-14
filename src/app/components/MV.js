@@ -23,6 +23,11 @@ export default function MV() {
   useEffect(() => {
     const onDone = () => setStartTitleAnim(true);
     document.addEventListener("loader:done", onDone);
+    try {
+     if (typeof window !== "undefined" && sessionStorage.getItem("loaderShown") === "1") {
+       requestAnimationFrame(() => setStartTitleAnim(true));
+     }
+    } catch {}
     return () => document.removeEventListener("loader:done", onDone);
   }, []);
 

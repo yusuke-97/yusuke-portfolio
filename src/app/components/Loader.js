@@ -8,18 +8,23 @@ export default function Loader() {
   const totalDurationMs = 3000;
 
   const [progress, setProgress] = useState(0);
-  const [visible, setVisible] = useState(true);
+  const [visible, setVisible] = useState(false);
   const rafRef = useRef(null);
   const startRef = useRef(null);
 
   useEffect(() => {
-    document.body.classList.add("lock--loader");
-    return () => {
-      document.body.classList.remove("lock--loader");
-    };
+    if (typeof window === "undefined") return;
+
+    const shown = sessionStorage.getItem("loaderShown");
+    if (!shown) {
+      setVisible(true);
+      document.body.classList.add("lock--loader");
+    }
   }, []);
 
   useEffect(() => {
+    if (!visible) return;
+
     const tick = (t) => {
       if (!startRef.current) startRef.current = t;
       const elapsed = t - startRef.current;
@@ -33,13 +38,18 @@ export default function Loader() {
         setTimeout(() => {
           setVisible(false);
           document.body.classList.remove("lock--loader");
+          sessionStorage.setItem("loaderShown", "1");
           document.dispatchEvent(new Event("loader:done"));
         }, 120);
       }
     };
+    
     rafRef.current = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(rafRef.current);
-  }, []);
+    return () => {
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+      startRef.current = null;
+    };
+  }, [visible]);
 
   const stepFloat = (progress / 100) * (totalSteps - 1);
   const letterIndex = Math.round(stepFloat);
