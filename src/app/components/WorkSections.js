@@ -1,23 +1,49 @@
 import Image from "next/image";
+import { getSections } from "@/app/data/workSections";
 
-function Section({ id, title, img, alt, text }) {
-  return (
-    <div id={id} className="fade-in">
-      <h3>{title}</h3>
-      <div className="views-detail">
-        <Image src={img} width={800} height={450} alt={alt} />
-        <p className="detail">{text}</p>
-      </div>
-    </div>
-  );
-}
+export default function WorkSections({
+  project,
+  sections,
+  showOverview = true,
+  overviewIcon = "/img/works-detail/gear-icon.svg",
+  overviewIconSize = { w: 28, h: 28 },
+  className = "",
+}) {
+  
+  const items = sections ?? (project ? getSections(project) : []) ?? [];
+  if (!items.length) return null;
 
-export default function WorkSections({ sections }) {
   return (
-    <>
-      {sections.map((section) => (
-        <Section key={section.id} {...section} />
+    <div className={`work-sections ${className}`} data-project={project || ""}>
+      {showOverview && (
+        <ul className="overview-list">
+          {items.map((item) => (
+            <li key={item.id}>
+              <a href={`#${item.id}`}>
+                <Image
+                  className="overview-list-img"
+                  src={overviewIcon}
+                  width={overviewIconSize.w}
+                  height={overviewIconSize.h}
+                  alt=""
+                  aria-hidden="true"
+                />
+                <span className="text">{item.title}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      )}
+
+      {items.map(({ id, title, img, alt, text }) => (
+        <div id={id} key={id} className="fade-in article-part">
+          <h3>{title}</h3>
+          <div className="views-detail">
+            <Image src={img} width={1908} height={2230} alt={alt} />
+            <p className="detail">{text}</p>
+          </div>
+        </div>
       ))}
-    </>
+    </div>
   );
 }
