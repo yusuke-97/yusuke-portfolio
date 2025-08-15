@@ -1,10 +1,10 @@
 "use client";
 
-import useFadeInScroll from "../../hooks/useFadeInScroll";
-import WorkContents from "../../components/WorkContents";
-import PageTopButton from "../../components/PageTopButton";
-import WorkHero from "../../components/WorkHero";
-import WorkMeta from "../../components/WorkMeta";
+import useFadeInScroll from "@/app/hooks/useFadeInScroll";
+import WorkContents from "@/app/components/WorkContents";
+import PageTopButton from "@/app/components/PageTopButton";
+import WorkHero from "@/app/components/WorkHero";
+import WorkMeta from "@/app/components/WorkMeta";
 import WorksList from "@/app/components/WorksList";
 
 export default function IshistagramPage() {
