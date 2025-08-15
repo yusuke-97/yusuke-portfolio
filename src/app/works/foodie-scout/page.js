@@ -46,7 +46,7 @@ export default function FoodieScoutPage() {
               </div>
             </div>
             <div className="article-part fade-in">
-              <h3>コーディングについて</h3>
+              <h2>コーディングについて</h2>
               <p>
                 Webアプリケーションとして、PC・スマホどちらでも快適に利用できるようレスポンシブデザインを採用しています。
               </p>
