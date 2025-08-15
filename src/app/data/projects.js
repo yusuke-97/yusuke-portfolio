@@ -18,4 +18,14 @@ export const PROJECTS_META = {
     heroSrc: "/img/works-detail/works-2-fv.png",
     heroAlt: "FoodieScout トップ画像",
   },
+
+  portfolio: {
+    githubUrl: "https://github.com/yusuke-97/yusuke-portfolio",
+    role: "基本設計、開発、テスト",
+    tech: "HTML / CSS / JavaScript / Next.js",
+
+    siteUrl: "https://foodie-scout-2c43510ee323.herokuapp.com",//TODO
+    heroSrc: "/img/works-detail/works-3-fv.png",
+    heroAlt: "ポートフォリオ トップ画像",
+  },
 };

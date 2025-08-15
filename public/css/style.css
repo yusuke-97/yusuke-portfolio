@@ -896,6 +896,7 @@ main {
 
 .article .article-container .article-body .article-part .views-detail img {
   width: 45%;
+  border: 1px solid #EEF2F3;
 }
 
 .article .article-container .article-body .article-part .detail {

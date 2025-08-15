@@ -137,7 +137,7 @@ export default function Home() {
                   <p className="works-title">飲食店予約サービスのWebアプリ</p>
                 </div>
               </a>
-              <a className="works-item" href="/">
+              <a className="works-item" href="/works/portfolio">
                 <div className="works-img-wrap">
                   <Image className="works-img" src="/img/works/portfolio.png" alt="foodie-scout" width={828} height={621} />
                 </div>

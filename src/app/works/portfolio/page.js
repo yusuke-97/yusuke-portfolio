@@ -15,40 +15,40 @@ export default function FoodieScoutPage() {
     <main className="content">
       <article className="article">
         <div className="article-container">
-          <h1 className="article-title fade-in">飲食店予約サービスアプリ 【Foodie Scout】</h1>
+          <h1 className="article-title fade-in">ポートフォリオサイト</h1>
 
           <div className="article-body">
-            <ProjectHero project="foodieScout" />
+            <ProjectHero project="portfolio" />
 
-            <ProjectMeta project="foodieScout" />
+            <ProjectMeta project="portfolio" />
 
             <div className="article-part fade-in">
               <h2>概要</h2>
               <p>
-                トップ画面、詳細画面、検索結果画面、プロフィール、レビュー作成など計7画面からなる飲食店予約サービスです。
+                トップページと作品紹介ページの２ページから構成されるポートフォリオサイトです。
               </p>
             </div>
             
-            <WorkSections project="foodieScout" />
+            <WorkSections project="portfolio" />
 
             <div className="article-part fade-in">
               <h2>重視している点について</h2>
               <div className="views-detail">
                 <Image
-                  src="/img/works-detail/works-2-6.png"
+                  src="/img/works-detail/works-3-3.png"
                   alt="先払い予約システム説明"
                   width={800}
                   height={450}
                 />
                 <p className="detail">
-                  予約時に予約料金（予算の50%）を先払いすることで無断キャンセルやフードロスの防止に貢献しています。残高不足の場合は確認ボタンを非活性にするなどのUXを考慮した実装も行いました。
+                  作品紹介ページやTOPページのSKILLなど、視覚的に見やすいようにしました。
                 </p>
               </div>
             </div>
             <div className="article-part fade-in">
               <h2>コーディングについて</h2>
               <p>
-                Webアプリケーションとして、PC・スマホどちらでも快適に利用できるようレスポンシブデザインを採用しています。
+                PC・スマホどちらでも快適に利用できるようレスポンシブデザインを採用しています。
               </p>
             </div>
           </div>

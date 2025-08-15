@@ -83,7 +83,26 @@ export const PROJECT_SECTIONS = {
       text:
         "料理ジャンルごとの口コミ投稿やランキングを作成できる機能を提供しています。",
     },
-  ]
+  ],
+
+  portfolio: [
+    {
+      id: "top-view",
+      title: "トップページ",
+      img: "/img/works-detail/works-3-1.png",
+      alt: "トップページ",
+      text:
+        "トップページでは、視覚的に分かりやすいように配色にこだわりました。",
+    },
+    {
+      id: "works-detail",
+      title: "作品紹介ページ",
+      img: "/img/works-detail/works-3-2.png",
+      alt: "作品紹介ページ",
+      text:
+        "作品紹介ページでは、視覚的に分かりやすいように配色にこだわりました。",
+    },
+  ],
 };
 
 export const getSections = (project) => PROJECT_SECTIONS[project] ?? [];
