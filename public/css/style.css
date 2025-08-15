@@ -50,6 +50,10 @@ main {
   padding: 0 40px;
 }
 
+.works.section.is-sub .cmn-container {
+  padding: 0;
+}
+
 .fade-in {
   opacity: 0;
   transform: translateY(50px);
@@ -365,6 +369,10 @@ main {
 
 .works-list .works-item {
   flex: 0 1 calc(30%);
+}
+
+.works.section.is-sub .works-list .works-item {
+  flex: 0 1 calc(40%);
 }
 
 .works-list .works-item .works-img-wrap {
@@ -929,49 +937,6 @@ main {
 .article .article-container .article-body .overview-list-img {
   display: inline-block;
   width: 28px;
-}
-
-.article .article-container .home-link {
-  text-align: center;
-  margin-top: 40px;
-}
-
-.article .article-container .home-link .cp_link {
-  display: inline-block;
-  perspective: 1000px;
-  perspective-origin: 50% 50%;
-  vertical-align: bottom;
-  overflow: hidden;
-  text-decoration: none;
-}
-
-.article .article-container .home-link .cp_link:hover span {
-  background-color: #dafbff;
-  transform: translate3d(0, 0, -30px) rotateX(90deg);
-}
-
-.article .article-container .home-link .cp_link span {
-  display: inline-block;
-  position: relative;
-  padding: 8px 12px;
-  font-size: 16px; 
-  transition: 0.4s;
-  transform-origin: 50% 0%;
-  transform-style: preserve-3d;
-}
-
-.article .article-container .home-link .cp_link span:after {
-  display: inline-block;
-  position: absolute;
-  padding: 8px 12px;
-  left: 0;
-  top: 0;
-  content: attr(data-text);
-  color: #F1F5F9;
-  background-color: #00ACC1;
-  border-radius: 4px;
-  transform-origin: 50% 0%;
-  transform: translate3d(0, 105%, 0) rotateX(-90deg);
 }
 
 /*media Queries 767

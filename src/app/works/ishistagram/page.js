@@ -1,12 +1,12 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import useFadeInScroll from "../../hooks/useFadeInScroll";
 import WorkSections from "../../components/WorkSections";
 import PageTopButton from "../../components/PageTopButton";
 import ProjectHero from "../../components/ProjectHero";
 import ProjectMeta from "../../components/ProjectMeta";
+import WorksGallery from "@/app/components/WorksGallery";
 
 export default function IshistagramPage() {
   useFadeInScroll();
@@ -53,11 +53,11 @@ export default function IshistagramPage() {
             </div>
           </div>
 
-          <div className="home-link">
-            <Link href="/#works" className="cp_link">
-              <span data-text="Works一覧へ">Works一覧へ</span>
-            </Link>
-          </div>
+          <WorksGallery
+            filter="ishistagram"
+            titleJp="他の作品"
+            titleEn="OTHER WORKS"
+          />
         </div>
       </article>
       <PageTopButton />

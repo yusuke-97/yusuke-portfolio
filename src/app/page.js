@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import MV from "./components/MV";
+import WorksGallery from "./components/WorksGallery";
 import SkillSection from "./components/SkillSection";
 import PageTopButton from "./components/PageTopButton";
 import useFadeInScroll from "./hooks/useFadeInScroll";
@@ -106,52 +107,7 @@ export default function Home() {
       <main className="content">
         <MV />
 
-        <section className="works section" id="works">
-          <div className="cmn-container">
-            <h2 className="title fade-in">
-              <span className="title-jp">作品紹介</span>
-              <span className="title-en">WORKS</span>
-            </h2>
-            <div className="works-list fade-in">
-              <a className="works-item" href="/works/ishistagram">
-                <div className="works-img-wrap">
-                  <Image className="works-img" src="/img/works/ishistagram.png" alt="ishistagram" width={828} height={621} />
-                </div>
-                <div className="works-info">
-                  <div className="works-meta">
-                    <span className="badge">架空アプリ</span>
-                    <time className="date">2023.08</time>
-                  </div>
-                  <p className="works-title">画像投稿型SNSのWebアプリ</p>
-                </div>
-              </a>
-              <a className="works-item" href="/works/foodie-scout">
-                <div className="works-img-wrap">
-                  <Image className="works-img" src="/img/works/foodie-scout.png" alt="foodie-scout" width={828} height={621} />
-                </div>
-                <div className="works-info">
-                  <div className="works-meta">
-                    <span className="badge">架空アプリ</span>
-                    <time className="date">2023.11</time>
-                  </div>
-                  <p className="works-title">飲食店予約サービスのWebアプリ</p>
-                </div>
-              </a>
-              <a className="works-item" href="/works/portfolio">
-                <div className="works-img-wrap">
-                  <Image className="works-img" src="/img/works/portfolio.png" alt="foodie-scout" width={828} height={621} />
-                </div>
-                <div className="works-info">
-                  <div className="works-meta">
-                    <span className="badge">リニューアル</span>
-                    <time className="date">2025.08</time>
-                  </div>
-                  <p className="works-title">ポートフォリオサイト</p>
-                </div>
-              </a>
-            </div>
-          </div>
-        </section>
+        <WorksGallery filter="top" />
 
         <SkillSection />
 
