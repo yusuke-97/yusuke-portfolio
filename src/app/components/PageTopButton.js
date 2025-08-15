@@ -1,41 +1,33 @@
 "use client";
-
 import { useEffect } from "react";
-import Image from "next/image";
 
 export default function PageTopButton() {
   useEffect(() => {
-    const pageTop = document.getElementById("js-page-top");
-
-    const handleScroll = () => {
-      if (!pageTop) return;
-
-      const scrollY = window.scrollY;
-      const showPosition = 300;
-
-      // 表示・非表示制御
-      if (scrollY > showPosition) {
-        pageTop.classList.add("show");
-      } else {
-        pageTop.classList.remove("show");
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    handleScroll(); // 初回実行
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+    const el = document.getElementById("js-page-top");
+    const onScroll = () => el?.classList.toggle("show", window.scrollY > 300);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
+  const toTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
+
+  const TEXT = "YUSUKE ISHIYAMA PORTFOLIO ";
+  const CHARS = Array.from(TEXT);
+  const count = CHARS.length;
+  const step = 360 / count;
 
   return (
-    <div className="page-top" id="js-page-top" onClick={scrollToTop}>
-      <Image src="/img/page-top-icon.svg" alt="ページトップ" className="page-top-icon" width={40} height={40} />
-    </div>
+    <button id="js-page-top" className="page-top" onClick={toTop} aria-label="ページトップへ" type="button">
+      <div className="page-top__ring" aria-hidden="true" style={{ "--count": count, "--step": `${step}deg` }}>
+        {CHARS.map((ch, i) => (
+          <span key={`${ch}-${i}`} className="page-top__char" style={{ "--i": i }}>
+            {ch === " " ? "\u00A0" : ch}
+          </span>
+        ))}
+      </div>
+
+      <span className="page-top__center" aria-hidden="true">TOP</span>
+    </button>
   );
 }
