@@ -649,8 +649,8 @@ main {
   position: fixed;
   right: 24px;
   bottom: 24px;
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 80px;
   border: 0;
   background: transparent;
   border-radius: 50%;
@@ -659,6 +659,7 @@ main {
   transform: translateY(8px);
   transition: opacity .25s, transform .25s;
   z-index: 50;
+  background-color: rgba(33, 33, 33, 0.5);
 }
 
 .page-top.show {
@@ -667,7 +668,7 @@ main {
 }
 
 .page-top__ring {
-  --size: 100px;
+  --size: 80px;
   --radius: 36px;
   --start: -90deg;
   position: relative;
@@ -679,7 +680,7 @@ main {
   animation: pageTop-spin 10s linear infinite;
 }
 
-.page-top__center{
+.page-top__center {
   position: absolute;
   left: 50%;
   top: 50%;
@@ -715,7 +716,7 @@ main {
 
 @keyframes pageTop-spin { to { transform: rotate(360deg); } }
 
-@media (prefers-reduced-motion: reduce){
+@media (prefers-reduced-motion: reduce) {
   .page-top__ring{ animation: none; }
 }
 
