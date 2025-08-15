@@ -15,7 +15,7 @@ export default function FoodieScoutPage() {
     <main className="content">
       <article className="article">
         <div className="article-container">
-          <h2 className="article-title fade-in">飲食店予約サービスアプリ 【Foodie Scout】</h2>
+          <h1 className="article-title fade-in">飲食店予約サービスアプリ 【Foodie Scout】</h1>
 
           <div className="article-body">
             <ProjectHero project="foodieScout" />
@@ -23,7 +23,7 @@ export default function FoodieScoutPage() {
             <ProjectMeta project="foodieScout" />
 
             <div className="article-part fade-in">
-              <h3>概要</h3>
+              <h2>概要</h2>
               <p>
                 トップ画面、詳細画面、検索結果画面、プロフィール、レビュー作成など計17画面からなる飲食店予約サービスです。
               </p>
@@ -32,7 +32,7 @@ export default function FoodieScoutPage() {
             <WorkSections project="foodieScout" />
 
             <div className="article-part fade-in">
-              <h3>重視している点について</h3>
+              <h2>重視している点について</h2>
               <div className="views-detail">
                 <Image
                   src="/img/works-detail/works-2-6.png"

@@ -15,7 +15,7 @@ export default function IshistagramPage() {
     <main className="content">
       <article className="article">
         <div className="article-container">
-          <h2 className="article-title fade-in">画像投稿型SNSアプリ【ISHISTAGRAM】</h2>
+          <h1 className="article-title fade-in">画像投稿型SNSアプリ【ISHISTAGRAM】</h1>
 
           <div className="article-body">
             <ProjectHero project="ishistagram" />
@@ -23,7 +23,7 @@ export default function IshistagramPage() {
             <ProjectMeta project="ishistagram" />
 
             <div className="article-part fade-in">
-              <h3>概要</h3>
+              <h2>概要</h2>
               <p>
                 プロフィール画面と新規投稿画面、投稿編集画面、検索結果画面、プロフィール編集画面の6画面から構成される画像投稿型SNSのWebアプリケーションです。
               </p>
@@ -32,7 +32,7 @@ export default function IshistagramPage() {
             <WorkSections project="ishistagram" />
 
             <div className="article-part fade-in">
-              <h3>重視している点について</h3>
+              <h2>重視している点について</h2>
               <div className="views-detail">
                 <Image
                   src="/img/works-detail/works-1-7.png"
@@ -46,7 +46,7 @@ export default function IshistagramPage() {
               </div>
             </div>
             <div className="article-part fade-in">
-              <h3>コーディングについて</h3>
+              <h2>コーディングについて</h2>
               <p>
                 Webアプリケーションを開発する上で、PCはもちろんのこと、スマートフォンでも見やすくするためレスポンシブ対応を施しております。
               </p>

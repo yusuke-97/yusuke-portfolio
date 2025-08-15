@@ -37,7 +37,7 @@ export default function WorkSections({
 
       {items.map(({ id, title, img, alt, text }) => (
         <div id={id} key={id} className="fade-in article-part">
-          <h3>{title}</h3>
+          <h2>{title}</h2>
           <div className="views-detail">
             <Image src={img} width={1908} height={2230} alt={alt} />
             <p className="detail">{text}</p>
