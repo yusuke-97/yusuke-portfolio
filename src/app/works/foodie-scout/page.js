@@ -1,11 +1,10 @@
 "use client";
 
-import Image from "next/image";
 import useFadeInScroll from "../../hooks/useFadeInScroll";
-import WorkSections from "../../components/WorkSections";
+import WorkContents from "../../components/WorkContents";
 import PageTopButton from "../../components/PageTopButton";
-import ProjectHero from "../../components/ProjectHero";
-import ProjectMeta from "../../components/ProjectMeta";
+import WorkHero from "../../components/WorkHero";
+import WorkMeta from "../../components/WorkMeta";
 import WorksGallery from "@/app/components/WorksGallery";
 
 export default function FoodieScoutPage() {
@@ -18,39 +17,11 @@ export default function FoodieScoutPage() {
           <h1 className="article-title fade-in">飲食店予約サービスアプリ 【Foodie Scout】</h1>
 
           <div className="article-body">
-            <ProjectHero project="foodieScout" />
+            <WorkHero project="foodieScout" />
 
-            <ProjectMeta project="foodieScout" />
-
-            <div className="article-part fade-in">
-              <h2>概要</h2>
-              <p>
-                トップ画面、詳細画面、検索結果画面、プロフィール、レビュー作成など計7画面からなる飲食店予約サービスです。
-              </p>
-            </div>
+            <WorkMeta project="foodieScout" />
             
-            <WorkSections project="foodieScout" />
-
-            <div className="article-part fade-in">
-              <h2>重視している点について</h2>
-              <div className="views-detail">
-                <Image
-                  src="/img/works-detail/works-2-6.png"
-                  alt="先払い予約システム説明"
-                  width={800}
-                  height={450}
-                />
-                <p className="detail">
-                  予約時に予約料金（予算の50%）を先払いすることで無断キャンセルやフードロスの防止に貢献しています。残高不足の場合は確認ボタンを非活性にするなどのUXを考慮した実装も行いました。
-                </p>
-              </div>
-            </div>
-            <div className="article-part fade-in">
-              <h2>コーディングについて</h2>
-              <p>
-                Webアプリケーションとして、PC・スマホどちらでも快適に利用できるようレスポンシブデザインを採用しています。
-              </p>
-            </div>
+            <WorkContents project="foodieScout" />
           </div>
 
           <WorksGallery
