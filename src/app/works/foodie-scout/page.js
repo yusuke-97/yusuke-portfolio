@@ -5,7 +5,7 @@ import WorkContents from "../../components/WorkContents";
 import PageTopButton from "../../components/PageTopButton";
 import WorkHero from "../../components/WorkHero";
 import WorkMeta from "../../components/WorkMeta";
-import WorksGallery from "@/app/components/WorksGallery";
+import WorksList from "@/app/components/WorksList";
 
 export default function FoodieScoutPage() {
   useFadeInScroll();
@@ -24,11 +24,7 @@ export default function FoodieScoutPage() {
             <WorkContents project="foodieScout" />
           </div>
 
-          <WorksGallery
-            filter="foodieScout"
-            titleJp="他の作品"
-            titleEn="OTHER WORKS"
-          />
+          <WorksList filter="foodieScout" />
         </div>
       </article>
       <PageTopButton />

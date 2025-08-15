@@ -2,18 +2,23 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { WORKS_META } from "@/app/data/works";
+import { WORKS_LIST } from "@/app/data/worksList";
 
 export default function WorksGallery({
   filter = "top",
   id = "works",
   className = "",
-  titleJp = "作品紹介",
-  titleEn = "WORKS",
+  titleJp,
+  titleEn,
 }) {
   const isTop = filter === "top";
 
-  let entries = Object.entries(WORKS_META).sort(
+  const autoTitleJp = isTop ? "作品紹介" : "他の作品";
+  const autoTitleEn = isTop ? "WORKS" : "OTHER WORKS";
+  const headingJp = titleJp ?? autoTitleJp;
+  const headingEn = titleEn ?? autoTitleEn;
+
+  let entries = Object.entries(WORKS_LIST).sort(
     (a, b) => (a[1].order ?? 999) - (b[1].order ?? 999)
   );
   if (!isTop) entries = entries.filter(([key]) => key !== filter);
@@ -25,8 +30,8 @@ export default function WorksGallery({
     >
       <div className="cmn-container">
         <h2 className="title fade-in">
-          <span className="title-jp">{titleJp}</span>
-          <span className="title-en">{titleEn}</span>
+          <span className="title-jp">{headingJp}</span>
+          <span className="title-en">{headingEn}</span>
         </h2>
 
         <div className="works-list fade-in">
@@ -49,4 +54,3 @@ export default function WorksGallery({
     </section>
   );
 }
-

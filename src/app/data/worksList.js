@@ -1,4 +1,4 @@
-export const WORKS_META = {
+export const WORKS_LIST = {
   ishistagram: {
     order: 1,
     href: "/works/ishistagram",

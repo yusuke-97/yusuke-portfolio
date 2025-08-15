@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import MV from "./components/MV";
-import WorksGallery from "./components/WorksGallery";
+import WorksList from "./components/WorksList";
 import SkillSection from "./components/SkillSection";
 import PageTopButton from "./components/PageTopButton";
 import useFadeInScroll from "./hooks/useFadeInScroll";
@@ -107,7 +107,7 @@ export default function Home() {
       <main className="content">
         <MV />
 
-        <WorksGallery filter="top" />
+        <WorksList filter="top" />
 
         <SkillSection />
 
