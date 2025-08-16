@@ -12,8 +12,10 @@ export default function MV() {
   const hlsRef = useRef(null);
 
   const title = "YUSUKE ISHIYAMA";
-  const srcHls = "/video/hls/main.m3u8";
-  const srcMp4 = process.env.PUBLIC_MP4_URL || "/video/main.mp4";
+  const BASE = process.env.NEXT_PUBLIC_BLOB_BASE || "";
+  const srcHls = `${BASE}/video/hls/main.m3u8` || "/video/hls/main.m3u8";
+  const srcMp4 = `${BASE}/video/main.mp4` || "/video/main.mp4";
+
 
   const lastVisibleIndex = useMemo(() => {
     const chars = title.split("");
@@ -36,32 +38,41 @@ export default function MV() {
     const video = videoRef.current;
     if (!video || !showBg) return;
 
+    const playMp4 = () => {
+      video.src = srcMp4;
+      video.play().catch(() => {});
+    };
+
     const canPlayNativeHls =
       video.canPlayType("application/vnd.apple.mpegURL") === "probably" ||
       video.canPlayType("application/vnd.apple.mpegURL") === "maybe";
 
     if (canPlayNativeHls) {
       video.src = srcHls;
-      video.play().catch(() => {});
-    } else if (Hls.isSupported()) {
-      const hls = new Hls();
+      video.play().catch(playMp4);
+      video.addEventListener("error", playMp4, { once: true });
+      return;
+    }
+
+    if (Hls.isSupported()) {
+      const hls = new Hls({ enableWorker: true });
       hlsRef.current = hls;
       hls.loadSource(srcHls);
       hls.attachMedia(video);
       hls.on(Hls.Events.MANIFEST_PARSED, () => {
-        video.play().catch(() => {});
+        video.play().catch(playMp4);
       });
-    } else {
-      video.src = srcMp4;
-      video.play().catch(() => {});
+      hls.on(Hls.Events.ERROR, (_ev, data) => {
+        if (data?.fatal) {
+          hls.destroy();
+          hlsRef.current = null;
+          playMp4();
+        }
+      });
+      return () => { hls.destroy(); hlsRef.current = null; };
     }
 
-    return () => {
-      if (hlsRef.current) {
-        hlsRef.current.destroy();
-        hlsRef.current = null;
-      }
-    };
+    playMp4();
   }, [showBg, srcHls, srcMp4]);
 
   useEffect(() => {
