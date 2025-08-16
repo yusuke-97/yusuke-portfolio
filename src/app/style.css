@@ -157,6 +157,14 @@ main {
 /*--------------------------------
 ヘッダー
 ---------------------------------*/
+.app-booting .header {
+  display: none;
+}
+
+.lock--loader .header {
+  display: none;
+}
+
 .header {
   position: fixed;
   top: 0;

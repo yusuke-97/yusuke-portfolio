@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useLayoutEffect } from "react";
 
 export default function Loader() {
   const NAME = "YUSUKE ISHIYAMA";
@@ -12,7 +12,7 @@ export default function Loader() {
   const rafRef = useRef(null);
   const startRef = useRef(null);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (typeof window === "undefined") return;
 
     const shown = sessionStorage.getItem("loaderShown");

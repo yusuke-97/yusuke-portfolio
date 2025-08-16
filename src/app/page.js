@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import MV from "./components/MV";
 import WorksList from "./components/WorksList";
 import SkillSection from "./components/SkillSection";

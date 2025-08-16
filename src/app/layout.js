@@ -1,5 +1,6 @@
 import { Inter, Montserrat } from "next/font/google";
 import "./style.css";
+import AppBoot from "./components/AppBoot";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Loader from "./components/Loader";
@@ -22,7 +23,8 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="ja">
-      <body className={`${inter.variable} ${montserrat.variable}`}>
+      <body className={`app-booting ${inter.variable} ${montserrat.variable}`}>
+        <AppBoot />
         <Loader />
         <Header />
         {children}
