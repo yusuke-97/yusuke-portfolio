@@ -1,3 +1,10 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
 body {
   font-family: var(--font-inter), var(--font-montserrat), sans-serif;
   font-size: 15px;
@@ -63,6 +70,53 @@ main {
 .fade-in.active {
   opacity: 1;
   transform: translateY(0);
+}
+
+/*--------------------------------
+  ローディング
+---------------------------------*/
+.loader__backdrop {
+  position: fixed;
+  inset: 0;
+  background: #222222;
+  display: grid;
+  place-items: center;
+  z-index: 9999;
+  animation: loaderFadeIn 300ms ease-out;
+}
+
+@keyframes loaderFadeIn { from {opacity: 0} to {opacity: 1} }
+
+.loader__wrap {
+  display: grid;
+  place-items: center;
+  gap: 16px;
+}
+
+.loader__ringWrap {
+  position: relative;
+  width: 220px;
+  height: 220px;
+}
+
+.loader__ring { display: block; }
+
+.loader__char {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+  shape-rendering: geometricPrecision;
+}
+
+.loader__percent {
+  margin-top: 8px;
+  font-size: 20px;
+  letter-spacing: 1.5px;
+  color: #F1F5F9;
+  user-select: none;
 }
 
 

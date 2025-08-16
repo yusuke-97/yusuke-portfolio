@@ -1,5 +1,5 @@
 import { Inter, Montserrat } from "next/font/google";
-import "./globals.css";
+import "./style.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Loader from "./components/Loader";
@@ -22,10 +22,6 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="ja">
-      <head>
-        <link rel="stylesheet" href="/css/ress.css" />
-        <link rel="stylesheet" href="/css/style.css" />
-      </head>
       <body className={`${inter.variable} ${montserrat.variable}`}>
         <Loader />
         <Header />
