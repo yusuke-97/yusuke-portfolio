@@ -582,12 +582,13 @@ main {
   flex: 1;
 }
 
-.profile-body p {
+.profile-body .profile-detail {
   font-size: 16px;
   line-height: 2;
+  white-space: pre-line;
 }
 
-.profile-body p:not(:last-child) {
+.profile-body .profile-detail:not(:last-child) {
   margin-bottom: 32px;
 }
 
@@ -1175,12 +1176,12 @@ main {
     font-size: 2vw;
   }
 
-  .profile-body p {
+  .profile-body .profile-detail {
     font-size: 1.6vw;
     line-height: 1.7;
   }
 
-  .profile-body p:not(:last-child) {
+  .profile-body .profile-detail:not(:last-child) {
     margin-bottom: 20px;
   }
 
