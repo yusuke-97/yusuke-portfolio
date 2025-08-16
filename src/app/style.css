@@ -238,6 +238,10 @@ main {
   display: flex;
 }
 
+.sp-menu {
+  display: none;
+}
+
 /*--------------------------------
   メインビジュアル
 ---------------------------------*/
@@ -1079,7 +1083,8 @@ main {
     margin-top: 18px;
   }
 
-  .sp-menu {
+  .sp-menu  {
+    display: block;
     position: fixed;
     inset: 0;
     z-index: 100;
