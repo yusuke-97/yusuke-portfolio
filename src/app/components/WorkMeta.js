@@ -1,9 +1,9 @@
 "use client";
 import Image from "next/image";
-import { PROJECTS_META } from "@/app/data/projects";
+import { WORKS_META } from "@/app/data/worksMeta";
 
 export default function WorkMeta({ project, overrides = {}, className = "" }) {
-  const base = PROJECTS_META[project] || {};
+  const base = WORKS_META[project] || {};
   const meta = { ...base, ...overrides };
   const { githubUrl, role, tech } = meta;
 
