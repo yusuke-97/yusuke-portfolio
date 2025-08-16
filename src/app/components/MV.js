@@ -12,7 +12,7 @@ export default function MV() {
   const hlsRef = useRef(null);
 
   const title = "YUSUKE ISHIYAMA";
-  const srcHls = "/video/hls/main.m3u8";
+  const srcHls = process.env.NEXT_PUBLIC_HLS_URL || "/video/hls/main.m3u8";
 
   const lastVisibleIndex = useMemo(() => {
     const chars = title.split("");
@@ -92,6 +92,7 @@ export default function MV() {
         <div className="mv-bg">
           <video
             ref={videoRef}
+            crossOrigin="anonymous"
             className={`mv-container-video ${showBg ? "is-visible" : ""}`}
             autoPlay
             loop
