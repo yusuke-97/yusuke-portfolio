@@ -12,7 +12,8 @@ export default function MV() {
   const hlsRef = useRef(null);
 
   const title = "YUSUKE ISHIYAMA";
-  const srcHls = process.env.NEXT_PUBLIC_HLS_URL || "/video/hls/main.m3u8";
+  const srcHls = "/video/hls/main.m3u8";
+  const srcMp4 = process.env.PUBLIC_MP4_URL || "/video/main.mp4";
 
   const lastVisibleIndex = useMemo(() => {
     const chars = title.split("");
@@ -50,6 +51,9 @@ export default function MV() {
       hls.on(Hls.Events.MANIFEST_PARSED, () => {
         video.play().catch(() => {});
       });
+    } else {
+      video.src = srcMp4;
+      video.play().catch(() => {});
     }
 
     return () => {
@@ -58,7 +62,7 @@ export default function MV() {
         hlsRef.current = null;
       }
     };
-  }, [showBg, srcHls]);
+  }, [showBg, srcHls, srcMp4]);
 
   useEffect(() => {
     if (!showTagline) {
@@ -92,13 +96,13 @@ export default function MV() {
         <div className="mv-bg">
           <video
             ref={videoRef}
-            crossOrigin="anonymous"
             className={`mv-container-video ${showBg ? "is-visible" : ""}`}
             autoPlay
             loop
             muted
             playsInline
             preload="metadata"
+            crossOrigin="anonymous"
             aria-hidden="true"
           />
         </div>
