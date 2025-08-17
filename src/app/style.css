@@ -629,6 +629,7 @@ main {
 .profile-body .profile-name {
   font-size: 24px;
   font-weight: bold;
+  margin-bottom: 24px;
 }
 
 /*--------------------------------
@@ -664,7 +665,7 @@ main {
   justify-content: center;
   padding: 0 8px;
   border-radius: 4px;
-  font-size: 16px;
+  font-size: 14px;
   color: #EFE0AE;
   border: 1px solid #EFE0AE;
 }
@@ -935,7 +936,6 @@ main {
   place-items: center;
   width: 129px;
   height: 40px;
-  margin-right: 16px;
   color: #E5E7EB;
   letter-spacing: 0.06em;
 }
@@ -972,7 +972,7 @@ main {
   position: absolute;
   top: 0;
   left: 0;
-  width: 7px;
+  width: 5px;
   height: 100%;
   content: "";
   background: linear-gradient(180deg, #EEF2F3 0%, #8E9EAB 94%);
@@ -1006,6 +1006,7 @@ main {
   font-size: 18px;
   list-style: none;
   margin-bottom: 24px;
+  gap: 16px;
 }
 
 .article .article-container .article-body .overview-list li:hover a {

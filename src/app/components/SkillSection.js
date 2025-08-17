@@ -64,12 +64,12 @@ export default function SkillSection() {
             { src: "/img/skills/js-icon.svg", alt: "javascript", name: "JavaScript", text: "お問い合わせフォームや自動スクロールなど動きのあるWebサイトを作ることが可能です。" },
             { src: "/img/skills/jquery-icon.svg", alt: "jquery", name: "jQuery", text: "Webサイトにフェードイン・フェードアウトなどリッチな動きをつけることが可能です。" },
             { src: "/img/skills/vuejs-icon.svg", alt: "vue", name: "Vue.js", text: "Vue.jsを用いて、Webアプリケーションに複雑な動きをつけることが可能です。" },
+            { src: "/img/skills/nextjs-icon.svg", alt: "nextjs", name: "Next.js", text: "Next.jsを用いて、リッチな動きをつけたサイトを開発することができます。" },
             { src: "/img/skills/php-icon.svg", alt: "php", name: "PHP", text: "PHPを用いて、動きのあるWebアプリケーションを開発することが可能です。" },
             { src: "/img/skills/laravel-icon.svg", alt: "laravel", name: "Laravel", text: "Laravelを用いて、小規模なMVCのWebアプリケーションを開発することが可能です。" },
             { src: "/img/skills/cakephp-icon.svg", alt: "cakephp", name: "CakePHP", text: "CakePHPを用いて、MVCのWebアプリケーションの開発・保守が可能です。" },
             { src: "/img/skills/codeigniter-icon.svg", alt: "codeigniter", name: "CodeIgniter", text: "CodeIgniterを用いて、MVCのWebアプリケーションの開発・保守が可能です。" },
             { src: "/img/skills/docker-icon.svg", alt: "docker", name: "Docker", text: "コンテナ仮想化を用いてアプリケーションを開発・配置・実行することが可能です。" },
-            { src: "/img/skills/nextjs-icon.svg", alt: "nextjs", name: "Next.js", text: "Next.jsを用いて、リッチな動きをつけたサイトを開発することができます。" },
           ].map((skill) => (
             <div className="skill-item" key={skill.name}>
               <div className="skill-img">
