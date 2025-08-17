@@ -1030,6 +1030,16 @@ main {
  margin-right: 0 !important;
 }
 
+.inline-tag-icon {
+  width: 1em !important;
+  height: 1em !important;
+  vertical-align: -0.15em;
+  margin: 0 .25em;
+  display: inline-block;
+  border: none !important;
+}
+
+
 /*media Queries 768
 ----------------------------------------------------*/
 @media screen and (max-width: 768px) {

@@ -13,6 +13,30 @@ export default function WorkContents(props) {
   const raw = project ? getBlocks(project) : {};
   const items = sections ?? getSections(project) ?? [];
 
+  function renderBodyWithTagIcon(text) {
+    if (!text) return null;
+    const parts = String(text).split(/『\s*』/);
+    if (parts.length === 1) return text;
+
+    return parts.flatMap((part, i) => (
+      i === 0
+        ? [part]
+        : [
+            <Image
+              key={`icon-${i}`}
+              src="/img/works-detail/tag-icon.svg"
+              alt=""
+              aria-hidden="true"
+              className="inline-tag-icon"
+              width={16}
+              height={16}
+            />,
+            part,
+          ]
+    ));
+  }
+
+
   const normalizeImage = (img) => {
     if (!img) return null;
     if (typeof img === "string") {
@@ -119,7 +143,7 @@ export default function WorkContents(props) {
                 alt={emph.image.alt}
               />
             )}
-            {emph.body && <p className="detail">{emph.body}</p>}
+            {emph.body && <p className="detail">{renderBodyWithTagIcon(emph.body)}</p>}
           </div>
         </div>
       ),
