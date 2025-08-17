@@ -6,6 +6,7 @@ export default function MV() {
   const [startTitleAnim, setStartTitleAnim] = useState(false);
   const [showBg, setShowBg] = useState(false);
   const [showTagline, setShowTagline] = useState(false);
+  const [lockScroll, setLockScroll] = useState(true);
   const firedRef = useRef(false);
 
   const videoRef = useRef(null);
@@ -27,10 +28,10 @@ export default function MV() {
       if (!res.ok) return;
       const { exp } = await res.json().catch(() => ({}));
       const delay = Math.max(30_000, exp * 1000 - Date.now() - 10_000);
-      clearTimeout(refreshTimerRef.current);
+      if (refreshTimerRef.current) clearTimeout(refreshTimerRef.current);
       refreshTimerRef.current = window.setTimeout(ensureHlsToken, delay);
     } catch {
-      clearTimeout(refreshTimerRef.current);
+      if (refreshTimerRef.current) clearTimeout(refreshTimerRef.current);
       refreshTimerRef.current = window.setTimeout(ensureHlsToken, 30_000);
     }
   }
@@ -43,7 +44,7 @@ export default function MV() {
     window.addEventListener("visibilitychange", onVis);
     window.addEventListener("focus", onVis);
     return () => {
-      clearTimeout(refreshTimerRef.current);
+      if (refreshTimerRef.current) clearTimeout(refreshTimerRef.current);
       window.removeEventListener("visibilitychange", onVis);
       window.removeEventListener("focus", onVis);
     };
@@ -59,12 +60,18 @@ export default function MV() {
     const onDone = () => setStartTitleAnim(true);
     document.addEventListener("loader:done", onDone);
     try {
-     if (typeof window !== "undefined" && sessionStorage.getItem("loaderShown") === "1") {
-       requestAnimationFrame(() => setStartTitleAnim(true));
-     }
+      if (typeof window !== "undefined" && sessionStorage.getItem("loaderShown") === "1") {
+        requestAnimationFrame(() => setStartTitleAnim(true));
+      }
     } catch {}
     return () => document.removeEventListener("loader:done", onDone);
   }, []);
+
+  useEffect(() => {
+    if (!showBg) return;
+    const t = window.setTimeout(() => setLockScroll(false), 1000);
+    return () => clearTimeout(t);
+  }, [showBg]);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -101,37 +108,60 @@ export default function MV() {
           playMp4();
         }
       });
-      return () => { hls.destroy(); hlsRef.current = null; };
+      return () => {
+        hls.destroy();
+        hlsRef.current = null;
+      };
     }
 
     playMp4();
   }, [showBg, srcHls, srcMp4]);
 
   useEffect(() => {
-    if (!showTagline) {
-      document.body.classList.add("lock--mv");
-      return () => document.body.classList.remove("lock--mv");
+    const html = document.documentElement;
+    const body = document.body;
+    const prevent = (e) => e.preventDefault();
+
+    if (lockScroll) {
+      const y = window.scrollY || window.pageYOffset || 0;
+      body.style.setProperty("--lock-top", `-${y}px`);
+      body.classList.add("lock--mv");
+      html.classList.add("lock--mv");
+      window.addEventListener("touchmove", prevent, { passive: false });
+      window.addEventListener("wheel", prevent, { passive: false });
+
+      return () => {
+        window.removeEventListener("touchmove", prevent);
+        window.removeEventListener("wheel", prevent);
+        body.classList.remove("lock--mv");
+        html.classList.remove("lock--mv");
+        const backY = -parseInt(getComputedStyle(body).getPropertyValue("--lock-top")) || 0;
+        body.style.removeProperty("--lock-top");
+        window.scrollTo({ top: backY, left: 0, behavior: "auto" });
+      };
     } else {
-      document.body.classList.remove("lock--mv");
+      body.classList.remove("lock--mv");
+      html.classList.remove("lock--mv");
+      const backY = -parseInt(getComputedStyle(body).getPropertyValue("--lock-top")) || 0;
+      if (backY) window.scrollTo({ top: backY, left: 0, behavior: "auto" });
+      body.style.removeProperty("--lock-top");
     }
-  }, [showTagline]);
+  }, [lockScroll]);
 
   const handleLastCharEnd = async () => {
     if (firedRef.current) return;
     firedRef.current = true;
-  
+
     try {
-      await fetch("/api/hls-token", {
-        cache: "no-store",
-        credentials: "same-origin",
-      });
+      await fetch("/api/hls-token", { cache: "no-store", credentials: "same-origin" });
     } catch (e) {
       console.warn("hls-token fetch failed", e);
     }
-  
+
     setShowBg(true);
+
     setTimeout(() => setShowTagline(true), 300);
-  };  
+  };
 
   return (
     <div className="mv">

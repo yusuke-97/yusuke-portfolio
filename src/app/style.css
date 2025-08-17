@@ -5,11 +5,12 @@
   --foreground: #171717;
 }
 
-body {
-  font-family: var(--font-inter), var(--font-montserrat), sans-serif;
-  font-size: 15px;
-  letter-spacing: .05em;
-  color: #F1F5F9;
+/* 既存に追加・上書き */
+html.lock--loader,
+html.lock--mv {
+  overflow: hidden;
+  height: 100%;
+  overscroll-behavior: none;
 }
 
 body.lock--loader,
@@ -17,6 +18,23 @@ body.lock--mv {
   overflow: hidden !important;
   height: 100%;
   overscroll-behavior: none;
+
+  position: fixed;
+  width: 100%;
+  left: 0;
+  right: 0;
+  top: 0;
+}
+
+.mv, .mv-container {
+  min-height: 100svh;
+}
+
+body {
+  font-family: var(--font-inter), var(--font-montserrat), sans-serif;
+  font-size: 15px;
+  letter-spacing: .05em;
+  color: #F1F5F9;
 }
 
 a {
