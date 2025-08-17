@@ -1631,6 +1631,10 @@ main {
     font-size: 3.5vw;
   }
 
+  .article-body p, .article-body ul .overview-item .text {
+    font-size: 2.8vw;
+  }
+
   .article .article-container .article-body ul li {
     display: flex;
     align-items: center;
