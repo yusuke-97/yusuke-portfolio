@@ -26,10 +26,6 @@ body.lock--mv {
   top: 0;
 }
 
-.mv, .mv-container {
-  min-height: 100svh;
-}
-
 body {
   font-family: var(--font-inter), var(--font-montserrat), sans-serif;
   font-size: 15px;
@@ -281,7 +277,7 @@ main {
 
 .mv,
 .mv .mv-container {
-  height: 100vh;
+  height: 100svh;
   background-color: #222222;
 }
 
