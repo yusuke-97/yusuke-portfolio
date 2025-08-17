@@ -1529,6 +1529,7 @@ main {
 
   #form .contact-btn-wrap .contact-submit {
     font-size: 3.5vw;
+    padding: 12px 36px;
   }
 
   #form .contact-btn-wrap .contact-submit .contact-submit-icon {
