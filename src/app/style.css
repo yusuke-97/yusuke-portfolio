@@ -1528,7 +1528,11 @@ main {
   }
 
   #form .contact-btn-wrap .contact-submit {
-    font-size: 4.5vw;
+    font-size: 3.5vw;
+  }
+
+  #form .contact-btn-wrap .contact-submit .contact-submit-icon {
+    width: 3.5vw;
   }
 
   .lead {
