@@ -1030,9 +1030,9 @@ main {
  margin-right: 0 !important;
 }
 
-/*media Queries 767
+/*media Queries 768
 ----------------------------------------------------*/
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 768px) {
   body {
     font-size: 14px;
   }
@@ -1236,25 +1236,20 @@ main {
     margin-top: 16px;
   }
 
+  .works-list .works-item {
+    flex: 0 1 calc(40%);
+  }
+
   .works-list .works-item .works-info {
     margin-top: 3px;
   }
 
-  .works-list {
-    justify-content: space-around;
-    width: 100%;
-    flex-wrap: nowrap;
-  }
-
-  .works-item {
-    width: 70%;
-    margin-right: 0;
-    margin-bottom: 36px;
-    display: inline-block;
-  }
-
   .works-item:last-child {
     margin-bottom: 0;
+  }
+
+  .works-item:nth-of-type(3) {
+    margin-top: 36px;
   }
 
   /* Skill */
