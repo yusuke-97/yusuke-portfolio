@@ -16,6 +16,38 @@ export default function MV() {
   const srcHls = `${BASE}/video/hls/main.m3u8` || "/video/hls/main.m3u8";
   const srcMp4 = `${BASE}/video/main.mp4` || "/video/main.mp4";
 
+  const refreshTimerRef = useRef(null);
+
+  async function ensureHlsToken() {
+    try {
+      const res = await fetch("/api/hls-token", {
+        cache: "no-store",
+        credentials: "same-origin",
+      });
+      if (!res.ok) return;
+      const { exp } = await res.json().catch(() => ({}));
+      const delay = Math.max(30_000, exp * 1000 - Date.now() - 10_000);
+      clearTimeout(refreshTimerRef.current);
+      refreshTimerRef.current = window.setTimeout(ensureHlsToken, delay);
+    } catch {
+      clearTimeout(refreshTimerRef.current);
+      refreshTimerRef.current = window.setTimeout(ensureHlsToken, 30_000);
+    }
+  }
+
+  useEffect(() => {
+    ensureHlsToken();
+    const onVis = () => {
+      if (document.visibilityState === "visible") ensureHlsToken();
+    };
+    window.addEventListener("visibilitychange", onVis);
+    window.addEventListener("focus", onVis);
+    return () => {
+      clearTimeout(refreshTimerRef.current);
+      window.removeEventListener("visibilitychange", onVis);
+      window.removeEventListener("focus", onVis);
+    };
+  }, []);
 
   const lastVisibleIndex = useMemo(() => {
     const chars = title.split("");
