@@ -1025,6 +1025,10 @@ main {
   width: 28px;
 }
 
+.overview-item--github img {
+ margin-right: 0 !important;
+}
+
 /*media Queries 767
 ----------------------------------------------------*/
 @media screen and (max-width: 767px) {
@@ -1442,7 +1446,8 @@ main {
   .article .article-container .article-body .visit-site {
     margin-top: 4%;
     font-size: 3.5vw;
-    padding: 12px 36px;
+    padding: 8px 24px;
+    gap: 24px;
   }
 
   .article .article-container .article-body .visit-site .visit-site-icon {
@@ -1635,6 +1640,7 @@ main {
 
   .article .article-container .article-body .overview-list li {
     font-size: 3.5vw;
+    gap: 12px;
   }
 
   .article .article-container .article-body ul li .arrow-box {
