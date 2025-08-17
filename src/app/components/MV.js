@@ -7,6 +7,7 @@ export default function MV() {
   const [showBg, setShowBg] = useState(false);
   const [showTagline, setShowTagline] = useState(false);
   const [lockScroll, setLockScroll] = useState(true);
+  const [videoReady, setVideoReady] = useState(false);
   const firedRef = useRef(false);
 
   const videoRef = useRef(null);
@@ -67,15 +68,20 @@ export default function MV() {
     return () => document.removeEventListener("loader:done", onDone);
   }, []);
 
-  useEffect(() => {
-    if (!showBg) return;
-    const t = window.setTimeout(() => setLockScroll(false), 1000);
-    return () => clearTimeout(t);
-  }, [showBg]);
+ useEffect(() => {
+   if (!videoReady) return;
+   const t = window.setTimeout(() => setLockScroll(false), 1000);
+   return () => clearTimeout(t);
+ }, [videoReady]);
 
   useEffect(() => {
     const video = videoRef.current;
     if (!video || !showBg) return;
+
+    const markReady = () => setVideoReady(true);
+    video.addEventListener('canplay', markReady, { once: true });
+    video.addEventListener('playing', markReady, { once: true });
+    video.addEventListener('loadeddata', markReady, { once: true });
 
     const playMp4 = () => {
       video.src = srcMp4;
@@ -111,10 +117,18 @@ export default function MV() {
       return () => {
         hls.destroy();
         hlsRef.current = null;
+        video.removeEventListener('canplay', markReady);
+        video.removeEventListener('playing', markReady);
+        video.removeEventListener('loadeddata', markReady);
       };
     }
 
     playMp4();
+    return () => {
+      video.removeEventListener('canplay', markReady);
+      video.removeEventListener('playing', markReady);
+      video.removeEventListener('loadeddata', markReady);
+    };
   }, [showBg, srcHls, srcMp4]);
 
   useEffect(() => {
