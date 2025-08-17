@@ -1670,6 +1670,11 @@ main {
   .article .article-container .article-body .article-part h2 {
     font-size: 6vw;
     margin-bottom: 4%;
+    padding-left: 0.8em;
+  }
+
+  .article .article-container .article-body .article-part h2::before {
+    width: 5px;
   }
 
   .article .article-container .article-body .article-part p {
