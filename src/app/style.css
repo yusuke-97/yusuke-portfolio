@@ -1345,7 +1345,7 @@ main {
 
   /* 下層ページ */
   .article {
-    padding: 50px 0;
+    padding: 100px 0;
   }
 
   .article-body h3 {
@@ -1433,6 +1433,30 @@ main {
   .title-en,
   .article-title {
     font-size: 8vw;
+  }
+
+  .article .article-container .article-title {
+    font-size: 6vw;
+  }
+
+  .article .article-container .article-body .visit-site {
+    margin-top: 4%;
+    font-size: 3.5vw;
+    padding: 12px 36px;
+  }
+
+  .article .article-container .article-body .visit-site .visit-site-icon {
+    width: 3.5vw;
+    height: 3.5vw;
+    margin: 0;
+  }
+
+  .article .article-container .article-body .overview-list {
+    margin-top: 8%;
+  }
+
+  .article-body ul li img {
+    width: 32px;
   }
 
   .title-jp {
@@ -1567,6 +1591,10 @@ main {
     padding-bottom: 28%;
   }
 
+  .article .section {
+    padding: 0;
+  }
+
   .sp-only {
     display: inline-flex;
   }
@@ -1587,20 +1615,59 @@ main {
   .article-body ul li .github-link,
   .article-body p
   {
-    font-size: 3vw;
+    font-size: 2.8vw;
   }
 
-  .article-body ul li .arrow-box {
-    min-width: 28%;
+  .article .article-container .article-body {
+    margin-bottom: 28%;
   }
 
-  .article-body h3 {
-    font-size: 4vw;
-    margin-top: 14%;
+  .article-body p, .article-body ul li .text {
+    font-size: 3.5vw;
+  }
+
+  .article .article-container .article-body ul li {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-size: 3.5vw;
+  }
+
+  .article .article-container .article-body .overview-list li {
+    font-size: 3.5vw;
+  }
+
+  .article .article-container .article-body ul li .arrow-box {
+    flex: 0 0 25%;
+    max-width: 25%;
+    width: 25% !important;
+    margin-right: 0;
+    display: grid;
+    place-items: center;
+    box-sizing: border-box;
+  }
+  
+  .article .article-container .article-body ul li .arrow-box .arrow-box__label {
+    width: 100%;
+    font-size: 3.5vw;
+    text-align: center;
+  }
+
+  .article .article-container .article-body .article-part {
+    margin-top: 28%;
+  }
+
+  .article .article-container .article-body .article-part h2 {
+    font-size: 6vw;
+    margin-bottom: 4%;
+  }
+
+  .article .article-container .article-body .article-part p {
+    font-size: 3.5vw;
   }
 
   .article .article-container .article-body .article-part .detail {
-    font-size: 2.8vw;
+    font-size: 3.5vw;
     width: 100%;
   }
 }
