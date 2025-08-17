@@ -12,6 +12,26 @@ export default function Loader() {
   const rafRef = useRef(null);
   const startRef = useRef(null);
 
+  const [isMd, setIsMd] = useState(true);
+  useLayoutEffect(() => {
+    if (typeof window === "undefined") return;
+    const mql = window.matchMedia("(min-width: 768px)");
+    const apply = () => setIsMd(mql.matches);
+    apply();
+    mql.addEventListener?.("change", apply);
+    return () => {
+      mql.removeEventListener?.("change", apply);
+    };
+  }, []);
+
+  const SIZE_MD = 220;
+  const FONT_MD = 72;
+  const SIZE_SM = 160;
+  const FONT_SM = 48;
+
+  const size = isMd ? SIZE_MD : SIZE_SM;
+  const fontSize = isMd ? FONT_MD : FONT_SM;
+
   useLayoutEffect(() => {
     if (typeof window === "undefined") return;
 
@@ -43,7 +63,7 @@ export default function Loader() {
         }, 120);
       }
     };
-    
+
     rafRef.current = requestAnimationFrame(tick);
     return () => {
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
@@ -51,15 +71,14 @@ export default function Loader() {
     };
   }, [visible]);
 
-  const stepFloat = (progress / 100) * (totalSteps - 1);
-  const letterIndex = Math.round(stepFloat);
-  const currentChar = nonSpaceLetters[letterIndex] ?? "";
-
-  const size = 220;
   const stroke = 2;
   const r = (size - stroke) / 2;
   const circumference = 2 * Math.PI * r;
-  const dashOffset = circumference * (1 - progress / 100);
+  const dashOffset = circumference * (progress / 100);
+
+  const stepFloat = (progress / 100) * (totalSteps - 1);
+  const letterIndex = Math.round(stepFloat);
+  const currentChar = nonSpaceLetters[letterIndex] ?? "";
 
   if (!visible) return null;
 
@@ -75,43 +94,42 @@ export default function Loader() {
           >
             <g transform={`rotate(-90 ${size / 2} ${size / 2})`}>
               <circle
-                cx={size/2}
-                cy={size/2}
+                cx={size / 2}
+                cy={size / 2}
                 r={r}
                 fill="none"
                 stroke="#64748B"
                 strokeWidth={stroke}
               />
               <circle
-                cx={size/2}
-                cy={size/2}
+                cx={size / 2}
+                cy={size / 2}
                 r={r}
                 fill="none"
                 stroke="#F1F5F9"
                 strokeWidth={stroke}
                 strokeDasharray={circumference}
-                strokeDashoffset={dashOffset}
+                strokeDashoffset={circumference - dashOffset}
                 strokeLinecap="round"
               />
             </g>
           </svg>
-  
-          <svg className="loader__char" viewBox={`0 0 ${size} ${size}`}>
-          <text
-            x="50%"
-            y="50%"
-            textAnchor="middle"
-            dominantBaseline="middle"
-            fontWeight="600"
-            fontSize="72"
-            fill="#F1F5F9"
-          >
-            {currentChar}
-          </text>
 
+          <svg className="loader__char" width={size} height={size} viewBox={`0 0 ${size} ${size}`}>
+            <text
+              x="50%"
+              y="50%"
+              textAnchor="middle"
+              dominantBaseline="middle"
+              fontWeight="600"
+              fontSize={fontSize}
+              fill="#F1F5F9"
+            >
+              {currentChar}
+            </text>
           </svg>
         </div>
-  
+
         <div className="loader__percent">{Math.floor(progress)}%</div>
       </div>
     </div>
