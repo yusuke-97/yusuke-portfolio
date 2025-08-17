@@ -24,7 +24,7 @@ export const WORKS_META = {
     githubUrl: "https://github.com/yusuke-97/yusuke-portfolio",
     role: "基本設計、開発、テスト",
     tech: "HTML / CSS / JavaScript / Next.js",
-    siteUrl: "https://foodie-scout-2c43510ee323.herokuapp.com", // TODO
+    siteUrl: "https://www.yusuke-systems.jp",
     heroSrc: "/img/works-detail/works-3-fv.png",
     heroAlt: "ポートフォリオ トップ画像",
   },
