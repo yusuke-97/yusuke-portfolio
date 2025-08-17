@@ -29,11 +29,15 @@ export default function SkillChart() {
   useEffect(() => {
     const ctx = chartRef.current?.getContext("2d");
 
+    const getFontSize = () => (window.innerWidth >= 768 ? 16 : 14);
+
     if (!ctx) return;
 
     if (chartInstanceRef.current) {
       chartInstanceRef.current.destroy();
     }
+
+    const initialFontSize = getFontSize();
 
     chartInstanceRef.current = new Chart(ctx, {
       type: "radar",
@@ -60,12 +64,12 @@ export default function SkillChart() {
             ticks: {
               stepSize: 1,
               color: "#F1F5F9",
-              font: { size: 16 },
+              font: { size: initialFontSize },
               showLabelBackdrop: false,
             },
             pointLabels: {
               color: "#F1F5F9",
-              font: { size: 16 },
+              font: { size: initialFontSize },
             },
             grid: {
               color: "rgba(241, 245, 249, 0.4)",

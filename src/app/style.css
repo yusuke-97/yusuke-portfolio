@@ -151,10 +151,6 @@ main {
   display: block;
 }
 
-.skill .title-en {
-  margin-bottom: 0;
-}
-
 .lead {
   font-size: 16px;
   line-height: 1.8;
@@ -1397,6 +1393,10 @@ main {
     margin-top: 2%;
   }
 
+  .mv .mv-container .mv-title .mv-letters {
+    font-size: 7.2vw;
+  }
+
   .mv .mv-container .mv-text {
     top: 54%;
   }
@@ -1489,6 +1489,10 @@ main {
     margin-bottom: 2%;
   }
 
+  .skill .title-en {
+    margin-bottom: 0;
+  }
+
   /* About */
   .profile {
     display: block;
@@ -1521,6 +1525,10 @@ main {
   #form .contact-field .contact-form  .contact-textbox,
   #form .contact-field .contact-form .contact-textarea {
     padding: 12px;
+  }
+
+  #form .contact-btn-wrap .contact-submit {
+    font-size: 4.5vw;
   }
 
   .lead {
