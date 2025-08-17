@@ -48,7 +48,11 @@ main {
 }
 
 .section {
-  padding: 90px 0;
+  padding-top: 90px;
+}
+
+.section:last-of-type {
+  padding-bottom: 90px;
 }
 
 .cmn-container {
@@ -552,6 +556,9 @@ main {
   width: 60px;
   height: auto;
   margin-right: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .skill-body {
@@ -1023,7 +1030,11 @@ main {
   }
 
   .section {
-    padding: 60px 0;
+    padding-top: 60px;
+  }
+
+  .section:last-of-type {
+    padding-bottom: 60px;
   }
 
   /* ヘッダー */
@@ -1205,7 +1216,7 @@ main {
     margin-top: 16px;
   }
 
-  .works-info {
+  .works-list .works-item .works-info {
     margin-top: 3px;
   }
 
@@ -1220,6 +1231,10 @@ main {
     margin-right: 0;
     margin-bottom: 36px;
     display: inline-block;
+  }
+
+  .works-item:last-child {
+    margin-bottom: 0;
   }
 
   /* Skill */
@@ -1288,7 +1303,7 @@ main {
 
   .profile-body .profile-detail {
     font-size: 1.6vw;
-    line-height: 1.7;
+    line-height: 1.8;
   }
 
   .profile-body .profile-detail:not(:last-child) {
@@ -1316,29 +1331,6 @@ main {
   }
 
   #form .contact-field {
-    width: 100%;
-  }
-
-  .contact-textbox {
-    height: 56px;
-    border-top: 0px;
-    border-left: 0px;
-    border-right: 0px;
-    background-color: #fafafa;
-    border-bottom-width: 1px;
-    border-bottom-color: #707070;
-    border-style: solid;
-    min-width: 300px;
-    width: 100%;
-  }
-
-  .contact-textarea {
-    height: 150px;
-    border-top: 0px;
-    border-left: 0px;
-    border-right: 0px;
-    background-color: #fafafa;
-    min-width: 300px;
     width: 100%;
   }
 
@@ -1413,11 +1405,11 @@ main {
 
   .title-en,
   .article-title {
-    font-size: 6vw;
+    font-size: 8vw;
   }
 
   .title-jp {
-    font-size: 2.4vw;
+    font-size: 2.8vw;
   }
 
   /* works */
@@ -1428,13 +1420,26 @@ main {
     flex-wrap: nowrap;
   }
 
-  .works-title {
+  .works-list .works-item .works-info .works-meta {
     font-size: 2.8vw;
-    margin-top: 3%;
+  }
+
+  .works-list .works-item .works-info .works-meta .badge {
+    font-size: 2.8vw;
+  }
+
+  .works-list .works-item .works-info .works-title {
+    font-size: 3.5vw;
+    margin-top: 2%;
+  }
+
+  .works-list .works-item .works-info {
+    margin-top: 2%;
   }
 
   .works-item {
     width: 100%;
+    margin-bottom: 16%;
   }
 
   .works-img-wrap img {
@@ -1445,14 +1450,27 @@ main {
   .skill-name,
   .profile-body .profile-name
   {
-    font-size: 3.4vw;
+    font-size: 4.5vw;
+    margin-bottom: 4%;
   }
 
   .skill-rating p,
   .skill-text,
   .profile-body .profile-detail
   {
-    font-size: 2.8vw;
+    font-size: 3.5vw;
+  }
+
+  .skill-content .skill-rating .skill-rating-item p {
+    font-size: 3.5vw;
+  }
+
+  .skill-img {
+    width: 48px;
+  }
+
+  .skill-name {
+    margin-bottom: 2%;
   }
 
   /* About */
@@ -1470,7 +1488,15 @@ main {
   }
 
   .lead {
-    font-size: 3.2vw;
+    font-size: 3.5vw;
+  }
+
+  .section {
+    padding-top: 28%;
+  }
+
+  .section:last-of-type {
+    padding-bottom: 28%;
   }
 
   .sp-only {

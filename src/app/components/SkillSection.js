@@ -72,7 +72,7 @@ export default function SkillSection() {
             { src: "/img/skills/nextjs-icon.svg", alt: "nextjs", name: "Next.js", text: "Next.jsを用いて、リッチな動きをつけたサイトを開発することができます。" },
           ].map((skill) => (
             <div className="skill-item" key={skill.name}>
-              <div className="skill-img" style={{ height: 60, display: "flex", alignItems: "center", justifyContent: "center" }}>
+              <div className="skill-img">
                 <Image src={skill.src} alt={skill.alt} width={60} height={60} />
               </div>
               <div className="skill-body">
