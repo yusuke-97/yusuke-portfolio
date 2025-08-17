@@ -151,6 +151,10 @@ main {
   display: block;
 }
 
+.skill .title-en {
+  margin-bottom: 0;
+}
+
 .lead {
   font-size: 16px;
   line-height: 1.8;
@@ -352,6 +356,7 @@ main {
   transform: translateX(-50%);
   color: #F1F5F9;
   z-index: 3;
+  width: 100%;
 }
 
 .mv .mv-container .mv-text .mv-sub {
@@ -1315,17 +1320,6 @@ main {
     margin-bottom: 20px;
   }
 
-  .contact-heading {
-    margin-bottom: 20px;
-  }
-
-  /* 必須 */
-  .contact-span {
-    color: #ce2222;
-    font-weight: bold;
-    margin-right: 80px;
-  }
-
   .contact-span-mobile {
     margin-right: 140px;
   }
@@ -1403,6 +1397,20 @@ main {
     margin-top: 2%;
   }
 
+  .mv .mv-container .mv-text {
+    top: 54%;
+  }
+
+  .mv .mv-container .mv-text .mv-sub {
+    font-size: 2.8vw;
+    letter-spacing: 0.1rem;
+    margin-top: 0;
+  }
+
+  .mv .mv-container .mv-scroll__label {
+    font-size: 2.8vw;
+  }
+
   .title-en,
   .article-title {
     font-size: 8vw;
@@ -1461,6 +1469,14 @@ main {
     font-size: 3.5vw;
   }
 
+  .skill-content .skill-rating .skill-rating-item .skill-rating-heading {
+    margin-bottom: 4%;
+  }
+
+  .skill-content .skill-rating .skill-rating-item .skill-rating-heading span {
+    font-size: 4.5vw;
+  }
+
   .skill-content .skill-rating .skill-rating-item p {
     font-size: 3.5vw;
   }
@@ -1485,6 +1501,26 @@ main {
 
   .profile-img img {
     width: 80%;
+  }
+
+  #form .contact-field {
+    gap: 4vw;
+  }
+
+  #form .contact-field .contact-heading .contact-label {
+    font-size: 4.5vw;
+  }
+
+  #form .contact-field .contact-heading .contact-span {
+    font-size: 2.8vw;
+    display: inline-block;
+    padding: 2px 6px;
+    border-radius: 4px;
+  }
+
+  #form .contact-field .contact-form  .contact-textbox,
+  #form .contact-field .contact-form .contact-textarea {
+    padding: 12px;
   }
 
   .lead {

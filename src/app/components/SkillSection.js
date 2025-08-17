@@ -39,11 +39,11 @@ export default function SkillSection() {
           </div>
           <div className="skill-rating">
             {[
-              { num: "5", text: "Expert", desc: "専門知識を持ち、プロジェクト全体を主導できる状態" },
-              { num: "4", text: "Advanced", desc: "応用的なスキルを持ち、高度な問題に対応できる段階" },
-              { num: "3", text: "Independent", desc: "実務レベルで自立して標準的なタスクを遂行できる段階" },
-              { num: "2", text: "Proficient", desc: "実務レベルで指導を受けながら作業できる状態" },
-              { num: "1", text: "Foundation", desc: "個人学習や独学レベルで基礎的な知識を持つ程度" },
+              { num: "5", text: "Expert", desc: "専門知識を持ち、プロジェクト全体を主導できる" },
+              { num: "4", text: "Advanced", desc: "応用的なスキルを持ち、高度な問題に対応できる" },
+              { num: "3", text: "Independent", desc: "実務レベルで自立して標準的なタスクを遂行できる" },
+              { num: "2", text: "Proficient", desc: "実務レベルで指導を受けながら作業できる" },
+              { num: "1", text: "Foundation", desc: "個人学習や独学レベルで基礎的な知識がある" },
             ].map((item) => (
               <div className="skill-rating-item" key={item.num}>
                 <h3 className="skill-rating-heading">
