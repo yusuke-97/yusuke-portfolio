@@ -1001,6 +1001,7 @@ main {
 .article .article-container .article-body .article-part .detail {
   width: 45%;
   margin-top: 0;
+  white-space: pre-line;
 }
 
 .article .article-container .article-body .overview-list {
