@@ -584,6 +584,9 @@ main {
   margin-bottom: 12px;
   font-weight: bold;
   font-size: 20px;
+  background: linear-gradient(180deg, #EEF2F3 0%, #8E9EAB 94%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .skill-text {
@@ -609,7 +612,6 @@ main {
 
 .profile-img img {
   border-radius: 50%;
-  opacity: 0.8;
 }
 
 .profile-body {
@@ -630,6 +632,9 @@ main {
   font-size: 24px;
   font-weight: bold;
   margin-bottom: 24px;
+  background: linear-gradient(180deg, #EEF2F3 0%, #8E9EAB 94%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 /*--------------------------------
