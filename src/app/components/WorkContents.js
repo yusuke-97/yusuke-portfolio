@@ -7,7 +7,7 @@ export default function WorkContents(props) {
     sections,
     overviewIcon = "/img/works-detail/gear-icon.svg",
     overviewIconSize = { w: 28, h: 28 },
-    order = ["intro", "summary", "content", "emphasis", "coding"],
+    order = ["intro", "summary", "layout", "content", "emphasis", "coding"],
   } = props;
 
   const raw = project ? getBlocks(project) : {};
@@ -63,6 +63,11 @@ export default function WorkContents(props) {
     body: raw?.summary?.body,
   };
 
+  const layout = {
+    heading: raw?.layout?.heading,
+    body: raw?.layout?.body,
+  };
+
   const emph = {
     heading: raw?.emphasis?.heading,
     image: normalizeImage(raw?.emphasis?.image),
@@ -90,6 +95,15 @@ export default function WorkContents(props) {
         <div className="article-part fade-in">
           {summary.heading && <h2>{summary.heading}</h2>}
           {summary.body && <p>{summary.body}</p>}
+        </div>
+      ),
+    },
+    layout: {
+      show: !!(layout.heading || layout.body),
+      render: () => (
+        <div className="article-part fade-in">
+          {layout.heading && <h2>{layout.heading}</h2>}
+          {layout.body && <p>{layout.body}</p>}
         </div>
       ),
     },
