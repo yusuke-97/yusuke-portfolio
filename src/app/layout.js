@@ -18,6 +18,19 @@ const montserrat = Montserrat({
 export const metadata = {
   title: "Yusuke Systems",
   description: "Yusuke Systemsは石山優友のポートフォリオです。",
+   openGraph: {
+    type: "website",
+    siteName: "Yusuke Systems",
+    url: "/",
+    images: [
+      {
+        url: "/ogp.png",
+        width: 1200,
+        height: 630,
+        alt: "Yusuke Systems",
+      },
+    ],
+  },
 };
 
 export default function RootLayout({ children }) {
