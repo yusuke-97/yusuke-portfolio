@@ -21,14 +21,27 @@ export default function WorkPage({ params }) {
 
   if (!meta) return notFound();
 
-  const h1 = meta.pageTitle ?? meta.heroAlt ?? project;
+  const titleJp = meta.pageTitleJp ?? "";
+  const titleEn = meta.pageTitleEn ?? "";
+  const iconSrc = meta.pageTitleIcon ?? "";
+  const iconAlt = titleEn || titleJp;
 
   return (
     <main className="content">
       <article className="article">
         <div className="article-container">
-          <h1 className="article-title fade-in">{h1}</h1>
-
+          <h1 className="article-title fade-in">
+            <div className="title-box">
+              <div className="title-icon">
+                <img src={iconSrc} alt={iconAlt} />
+              </div>
+              <div className="title-text">
+                <span className="title-jp">{titleJp}</span>
+                {titleEn && <span className="title-en">{titleEn}</span>}
+              </div>
+              <div className="title-corner" />
+            </div>
+          </h1>
           <div className="article-body">
             <WorkHero project={project} />
             <WorkMeta project={project} />

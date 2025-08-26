@@ -872,22 +872,64 @@ main {
   padding: 0 20px;
 }
 
-
 .article .article-container .article-title {
-  font-size: 32px;
-  font-weight: bold;
-  margin-bottom: 30px;
-  background: linear-gradient(180deg, #EEF2F3 0%, #8E9EAB 94%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  font-size: 0;
+  margin-bottom: 50px;
+}
+
+.article .article-container .title-box {
+  display: flex;
+  align-items: center;
+  background-color: #111111;
+  padding: 12px 20px;
+  border: 1px solid #F1F5F9;
+  position: relative;
+  overflow: hidden;
+}
+
+.article .article-container .title-icon img {
   display: block;
+  width: 80px;
+  height: auto;
+  object-fit: contain;
+  margin-right: 24px;
+}
+
+.article .article-container .title-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.article .article-container .title-text .title-jp,
+.article .article-container .title-text .title-en {
+  margin: 0;
+  line-height: 1.5;
+}
+
+.article .article-container .title-text .title-jp {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.article .article-container .title-text .title-en {
+  font-size: 16px;
+}
+
+.article .article-container .title-corner {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 120px;
+  height: 100%;
+  background: linear-gradient(135deg, #cfd9df, #e2ebf0);
+  clip-path: polygon(100% 0, 0 100%, 100% 100%);
 }
 
 .article .article-container .article-title.fade-in,
 .article .article-container .article-title.fade-in.active {
   transform: none;
 }
-
 
 .article .article-container .article-body {
   margin: 0 auto;
@@ -1364,6 +1406,31 @@ main {
     padding: 100px 0;
   }
 
+  .article .article-container .article-title {
+    margin-bottom: 40px;
+  }
+
+  .article .article-container .title-box {
+    padding: 8px 12px;
+  }
+
+  .article .article-container .title-icon img {
+    width: 50px;
+    margin-right: 16px;
+  }
+
+  .article .article-container .title-text .title-jp {
+    font-size: 18px;
+  }
+
+  .article .article-container .title-text .title-en {
+    font-size: 14px;
+  }
+
+  .article .article-container .title-corner {
+    width: 60px;
+  }
+
   .article-body h3 {
     font-size: 3vw;
     padding-left: .8em;
@@ -1449,10 +1516,6 @@ main {
   .title-en,
   .article-title {
     font-size: 8vw;
-  }
-
-  .article .article-container .article-title {
-    font-size: 6vw;
   }
 
   .article .article-container .article-body .visit-site {
