@@ -2,7 +2,7 @@ export const WORKS_META = {
   ishistagram: {
     pageTitleJp: "画像投稿型SNSアプリ",
     pageTitleEn: "ISHISTAGRAM",
-    pageTitleIcon: "/img/works/foodie-scout-icon.svg",
+    pageTitleIcon: "/img/works/ishistagram-icon.svg",
     githubUrl: "https://github.com/yusuke-97/ishistagram_app",
     role: "基本設計、開発、テスト",
     tech: "HTML / CSS / JavaScript / jQuery / PHP / Laravel / Amazon S3",
@@ -14,7 +14,7 @@ export const WORKS_META = {
   foodieScout: {
     pageTitleJp: "飲食店予約サービスアプリ",
     pageTitleEn: "Foodie Scout",
-    pageTitleIcon: "/img/works/ishistagram-icon.svg",
+    pageTitleIcon: "/img/works/foodie-scout-icon.svg",
     githubUrl: "https://github.com/yusuke-97/foodie_scout",
     role: "基本設計、開発、テスト",
     tech: "HTML / CSS / JavaScript / jQuery / PHP / Laravel / Amazon S3",
