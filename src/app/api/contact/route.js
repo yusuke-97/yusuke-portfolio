@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { createHash } from "crypto";
 
 // Basic, server-side validation helpers
 const emailRegex = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
@@ -29,9 +30,29 @@ const sanitize = (value, max = 2000) => {
   return clean.slice(0, max);
 };
 
+const logError = (msg, meta = {}) => {
+  const safeMeta = {};
+  const allowed = ["status", "stage", "reason", "ipHash", "error"];
+  for (const key of allowed) {
+    if (meta[key] !== undefined) safeMeta[key] = meta[key];
+  }
+  console.error(msg, safeMeta);
+};
+
+const hashIp = (ip) => {
+  if (!ip) return undefined;
+  try {
+    return createHash("sha256").update(ip).digest("hex").slice(0, 16);
+  } catch {
+    return undefined;
+  }
+};
+
 export async function POST(req) {
   if (!process.env.TURNSTILE_SECRET_KEY || !process.env.STATICFORMS_ACCESS_KEY) {
-    console.error("Missing TURNSTILE_SECRET_KEY or STATICFORMS_ACCESS_KEY");
+    logError("Missing TURNSTILE_SECRET_KEY or STATICFORMS_ACCESS_KEY", {
+      stage: "config",
+    });
     return NextResponse.json({ error: "Server misconfigured" }, { status: 500 });
   }
 
@@ -39,6 +60,7 @@ export async function POST(req) {
   try {
     payload = await req.json();
   } catch (err) {
+    logError("Invalid JSON", { stage: "parse" });
     return NextResponse.json({ error: "Invalid JSON" }, { status: 400 });
   }
 
@@ -53,8 +75,10 @@ export async function POST(req) {
   } = payload || {};
 
   const ip = getIp(req);
+  const ipHash = hashIp(ip);
 
   if (honeypot) {
+    logError("Honeypot triggered", { stage: "honeypot", ipHash });
     return NextResponse.json({ error: "Rejected" }, { status: 400 });
   }
 
@@ -65,15 +89,19 @@ export async function POST(req) {
   const safeSubject = sanitize(subject, 200);
 
   if (!safeName || !safeFurigana || !safeEmail || !safeMessage) {
+    logError("Missing fields", { stage: "validate", ipHash });
     return NextResponse.json({ error: "Missing fields" }, { status: 400 });
   }
   if (!emailRegex.test(safeEmail)) {
+    logError("Invalid email", { stage: "validate", ipHash });
     return NextResponse.json({ error: "Invalid email" }, { status: 400 });
   }
   if (!turnstileToken || typeof turnstileToken !== "string") {
+    logError("Missing captcha", { stage: "validate", ipHash });
     return NextResponse.json({ error: "Missing captcha" }, { status: 400 });
   }
   if (!withinRateLimit(ip)) {
+    logError("Rate limited", { stage: "rate-limit", ipHash });
     return NextResponse.json({ error: "Too many requests" }, { status: 429 });
   }
 
@@ -94,12 +122,17 @@ export async function POST(req) {
   );
 
   if (!verifyRes.ok) {
-    console.error("Turnstile verification failed", verifyRes.status);
+    logError("Turnstile verification failed", {
+      stage: "captcha",
+      status: verifyRes.status,
+      ipHash,
+    });
     return NextResponse.json({ error: "Captcha verification failed" }, { status: 502 });
   }
 
   const verifyJson = await verifyRes.json();
   if (!verifyJson.success) {
+    logError("Captcha rejected", { stage: "captcha", ipHash });
     return NextResponse.json({ error: "Captcha rejected" }, { status: 400 });
   }
 
@@ -127,11 +160,20 @@ export async function POST(req) {
 
     if (!staticRes.ok) {
       const text = await staticRes.text().catch(() => "");
-      console.error("StaticForms error", staticRes.status, text);
+      logError("StaticForms error", {
+        stage: "staticforms",
+        status: staticRes.status,
+        reason: text?.slice(0, 200),
+        ipHash,
+      });
       return NextResponse.json({ error: "Submit failed" }, { status: 502 });
     }
   } catch (err) {
-    console.error("StaticForms request failed", err);
+    logError("StaticForms request failed", {
+      stage: "staticforms",
+      error: err?.message,
+      ipHash,
+    });
     return NextResponse.json({ error: "Submit failed" }, { status: 502 });
   } finally {
     clearTimeout(timeout);
