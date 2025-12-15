@@ -1,21 +1,25 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+
+const TURNSTILE_SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || "";
 
 export default function ContactSection({
   id = "contact",
   className = "",
   titleJp = "お問い合わせ",
   titleEn = "CONTACT",
-  accessKey = "ec8beafa-d6d7-4e32-9d47-514c9f80258c",
   subject = "お問い合わせフォーム",
   submitIconActive = "/img/button-submit-black.svg",
   submitIconDisabled = "/img/button-submit-gold.svg",
 }) {
   const formRef = useRef(null);
+  const turnstileRef = useRef(null);
+  const turnstileWidgetId = useRef(null);
   const [formValid, setFormValid] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [turnstileToken, setTurnstileToken] = useState("");
 
   const validate = () => {
     const f = formRef.current;
@@ -25,12 +29,57 @@ export default function ContactSection({
     const email = f.email.value.trim();
     const message = f.message.value.trim();
     const validEmail = /\S+@\S+\.\S+/.test(email);
-    const ok = name && furigana && validEmail && message;
+    const ok = name && furigana && validEmail && message && turnstileToken;
     setFormValid(!!ok);
     return !!ok;
   };
 
   const handleBlurOrInput = () => validate();
+
+  useEffect(() => {
+    validate();
+  }, [turnstileToken]);
+
+  useEffect(() => {
+    if (!TURNSTILE_SITE_KEY || !turnstileRef.current) return;
+
+    const render = () => {
+      if (!window.turnstile || !turnstileRef.current) return;
+      if (turnstileWidgetId.current) {
+        window.turnstile.reset(turnstileWidgetId.current);
+        return;
+      }
+      turnstileWidgetId.current = window.turnstile.render(turnstileRef.current, {
+        sitekey: TURNSTILE_SITE_KEY,
+        callback: (token) => setTurnstileToken(token || ""),
+        "expired-callback": () => setTurnstileToken(""),
+        "error-callback": () => setTurnstileToken(""),
+      });
+    };
+
+    if (window.turnstile) {
+      render();
+      return;
+    }
+
+    const onLoadName = "__turnstileOnLoad";
+    window[onLoadName] = render;
+    const script = document.createElement("script");
+    script.src = `https://challenges.cloudflare.com/turnstile/v0/api.js?onload=${onLoadName}`;
+    script.async = true;
+    script.defer = true;
+    document.head.appendChild(script);
+
+    return () => {
+      if (script.parentNode) {
+        script.parentNode.removeChild(script);
+      }
+      if (turnstileWidgetId.current && window.turnstile) {
+        window.turnstile.remove(turnstileWidgetId.current);
+      }
+      delete window[onLoadName];
+    };
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -41,17 +90,30 @@ export default function ContactSection({
 
     setSubmitting(true);
     try {
-      const formData = new FormData(formRef.current);
-      formData.set("accessKey", accessKey);
-      formData.set("subject", subject);
-      const res = await fetch("https://api.staticforms.xyz/submit", {
+      const f = formRef.current;
+      const payload = {
+        name: f.name.value.trim(),
+        furigana: f.furigana.value.trim(),
+        email: f.email.value.trim(),
+        message: f.message.value.trim(),
+        subject,
+        honeypot: f.honeypot?.value || "",
+        turnstileToken,
+      };
+
+      const res = await fetch("/api/contact", {
         method: "POST",
-        body: formData,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
       });
       if (res.ok) {
         alert("送信が完了しました。ありがとうございます。");
         formRef.current.reset();
         setFormValid(false);
+        setTurnstileToken("");
+        if (turnstileWidgetId.current && window.turnstile) {
+          window.turnstile.reset(turnstileWidgetId.current);
+        }
       } else {
         alert("送信に失敗しました。再度お試しください。");
       }
@@ -78,10 +140,6 @@ export default function ContactSection({
 
         <form id="form" ref={formRef} onSubmit={handleSubmit}>
           <input type="text" name="honeypot" style={{ display: "none" }} />
-          <input type="hidden" name="accessKey" value={accessKey} />
-          <input type="hidden" name="subject" value={subject} />
-          <input type="hidden" name="replyTo" value="" />
-          <input type="hidden" name="redirectTo" value="" />
 
           <div className="contact-field">
             <div className="contact-heading">
@@ -152,12 +210,17 @@ export default function ContactSection({
           </div>
 
           <div className="contact-btn-wrap">
+            <div
+              ref={turnstileRef}
+              className="contact-turnstile"
+              aria-hidden="true"
+            />
             <button
               type="submit"
               className={`contact-submit ${formValid ? "is-active" : ""}`}
               disabled={!formValid || submitting}
             >
-              {submitting ? "送信中…" : "送 信"}
+              {submitting ? "送信中…" : "送信"}
               <Image
                 src={formValid ? submitIconActive : submitIconDisabled}
                 alt=""
